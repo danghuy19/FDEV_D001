@@ -1,6 +1,26 @@
 import React, { Component } from 'react';
 
 class Header extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            search_value: ""
+        }
+    }
+
+    handleChangeValueSearch = (e) => {
+        //console.log(e.target.value);
+        this.setState({
+            search_value: e.target.value
+        });
+    }
+
+    handleSubmitSearchForm = (e) => {
+        e.preventDefault();
+        //console.log('test');
+        window.location.href = window.location.href + "?s=" + this.state.search_value;
+    }
+
     render() {
         return (
             <div>
@@ -16,9 +36,9 @@ class Header extends Component {
                                     <a href="#"><i className="youtube"></i></a>
                                 </div>
                                 <div className="search">
-                                    <form>
+                                    <form onSubmit={this.handleSubmitSearchForm}>
                                         <input type="submit" value="" />
-                                        <input type="text" value="" placeholder="Search..." />
+                                        <input type="text" value={this.state.search_value} onChange={this.handleChangeValueSearch} placeholder="Search..." />
                                     </form>
                                 </div>
                                 <div className="clearfix"></div>

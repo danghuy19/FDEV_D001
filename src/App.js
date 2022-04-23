@@ -3,13 +3,15 @@ import './App.css';
 import Header from './Widgets/Header';
 import Content from './Widgets/Content';
 import Footer from './Widgets/Footer';
+import DragAndDrop from './Modules/DragAndDrop';
 
 function App() {
   return (
     <div>
-      <Header></Header>
+      {/* <Header></Header>
       <Content></Content>
-      <Footer></Footer>
+      <Footer></Footer> */}
+      <DragAndDrop />
     </div>
   );
 }
