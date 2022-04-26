@@ -1,0 +1,6 @@
+.game_container {
+    margin: auto;
+    width: 260px;
+    height: 500px;
+    background: url('../../public/images/road.png') ;
+}

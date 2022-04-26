@@ -4,6 +4,7 @@ import Header from './Widgets/Header';
 import Content from './Widgets/Content';
 import Footer from './Widgets/Footer';
 import DragAndDrop from './Modules/DragAndDrop';
+import GameEvent from './Modules/GameEvent';
 
 function App() {
   return (
@@ -11,7 +12,8 @@ function App() {
       {/* <Header></Header>
       <Content></Content>
       <Footer></Footer> */}
-      <DragAndDrop />
+      {/* <DragAndDrop /> */}
+      <GameEvent />
     </div>
   );
 }
