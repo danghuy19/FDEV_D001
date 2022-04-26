@@ -11,7 +11,8 @@ class GameEvent extends Component {
             time_run: 0,
             score: 0,
             player_position_x: 0,
-            player_position_y: 0
+            player_position_y: 0,
+            player_position_deg: 0
         }
 
         this.handleController = this.handleController.bind(this);
@@ -19,6 +20,9 @@ class GameEvent extends Component {
 
     componentDidMount(){
         this.intervalId = setInterval(this.run_game.bind(this), 40);
+
+        let input = document.getElementById('dieu_khien');
+        input.focus();
     }
 
     run_game = () => {
@@ -38,47 +42,84 @@ class GameEvent extends Component {
 
         if(e.keyCode == 37) //trai
         {
-            this.setState(prevState => {
-                prevState.player_position_x -= 1;
-                return prevState;
-            });
+            if(this.state.player_position_x <= 0){
+                //do nothing
+            }
+            else{
+                this.setState(prevState => {
+                    prevState.player_position_x -= 1;
+                    prevState.player_position_deg = -5;
+                    return prevState;
+                });
+            }
+            
         }
         else if(e.keyCode == 38) // tren
         {
-            this.setState(prevState => {
-                prevState.player_position_y += 1;
-                return prevState;
-            });
+            if(this.state.player_position_y >= 403){
+                // do nothing
+            }
+            else{
+                this.setState(prevState => {
+                    prevState.player_position_y += 1;
+                    return prevState;
+                });
+            }
         }
         else if(e.keyCode == 39) //phai
         {
-            this.setState(prevState => {
-                prevState.player_position_x += 1;
-                return prevState;
-            });
+            if(this.state.player_position_x >= 211){
+                //do nothing
+            }
+            else{
+                this.setState(prevState => {
+                    prevState.player_position_x += 1;
+                    prevState.player_position_deg = 5;
+                    return prevState;
+                });
+            }
         }
         else if(e.keyCode == 40) // duoi
         {
-            this.setState(prevState => {
-                prevState.player_position_y -= 1;
-                return prevState;
-            });
+            if(this.state.player_position_y <= 0){
+                //do nothing
+            }
+            else{
+                this.setState(prevState => {
+                    prevState.player_position_y -= 1;
+                    return prevState;
+                });
+            }
+            
         }
+    }
+
+    handleControllerOut = () => {
+        this.setState(prevState => {
+            prevState.player_position_deg = 0;
+            return prevState;
+        });
+    }
+
+    handleClickOutGame = () => {
+        let input = document.getElementById('dieu_khien');
+        input.focus();
     }
 
     render() {
         return (
-            <div>
+            <div onClick={this.handleClickOutGame}>
                 <div className="game_container" style={{
                     backgroundPosition: '0 ' + this.state.position_road + 'px'
                 }}>
                     <div className="score">{this.state.score}</div>
                     <div className="player" style={{
                         left: this.state.player_position_x,
-                        bottom: this.state.player_position_y
+                        bottom: this.state.player_position_y,
+                        transform: "rotate(" + this.state.player_position_deg + "deg)"
                     }}></div>
                 </div>
-                <input type="text" className="dieu_khien" id="dieu_khien" onKeyDown={this.handleController} />
+                <input type="text" className="dieu_khien" id="dieu_khien" onKeyUp={this.handleControllerOut} onKeyDown={this.handleController} />
             </div>
         );
     }
