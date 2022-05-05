@@ -11,8 +11,8 @@ function App() {
   return (
     <div>
       <Header></Header>
-      {/* <Content></Content> */}
-      <RegisterForm />
+      <Content></Content>
+      {/* <RegisterForm /> */}
       <Footer></Footer>
       {/* <DragAndDrop /> */}
       {/* <GameEvent /> */}
