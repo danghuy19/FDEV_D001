@@ -1,17 +1,26 @@
 import React, { Component } from 'react';
+import GreetingLogedIn from '../Modules/GreetingLogedIn';
+import LoginForm from '../Modules/LoginForm';
 
 class Header extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            search_value: ""
+            search_value: "",
+            logedInFlag: false,
+            user: {
+                username: 'hungnguyen',
+                fullname: 'Hung Nguyen',
+                password: '123456'
+            }
         }
     }
 
     handleChangeValueSearch = (e) => {
         //console.log(e.target.value);
-        this.setState({
-            search_value: e.target.value
+        this.setState(prevState => {
+            prevState.search_value = e.target.value;
+            return prevState;
         });
     }
 
@@ -21,7 +30,31 @@ class Header extends Component {
         window.location.href = window.location.href + "?s=" + this.state.search_value;
     }
 
+    handleFunctionLogin = () => {
+        this.setState(prevState => {
+            prevState.logedInFlag = true;
+            return prevState;
+        })
+    }
+
+    handleFunctionLogOut = () => {
+        this.setState(prevState => {
+            prevState.logedInFlag = false;
+            return prevState;
+        })
+    }
+
     render() {
+
+        let LogedInOrNot;
+
+        if(this.state.logedInFlag){
+            LogedInOrNot = <GreetingLogedIn user={this.state.user} handleLogOut={this.handleFunctionLogOut} />
+        }
+        else {
+            LogedInOrNot = <LoginForm handleLogin={this.handleFunctionLogin} />
+        }
+
         return (
             <div>
                 <div className="top-banner">
@@ -68,6 +101,9 @@ class Header extends Component {
                                     <li><a href="typo.html">News</a></li>
                                     <li><a href="gallery.html">Gallery</a></li>
                                     <li><a href="contact.html">Mail</a></li>
+                                    <li>
+                                        {LogedInOrNot}
+                                    </li>
                                 </ul>
                             </div>
 
