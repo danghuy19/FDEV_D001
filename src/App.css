@@ -65,3 +65,7 @@
 .game-grid:hover .mask_interface {
   opacity: 0.3;
 }
+
+table img {
+  width: 40px;
+}

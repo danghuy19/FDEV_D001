@@ -16,7 +16,6 @@ function App() {
       <Footer></Footer>
       {/* <DragAndDrop /> */}
       {/* <GameEvent /> */}
-      
     </div>
   );
 }
