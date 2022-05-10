@@ -184,3 +184,8 @@ table img {
     opacity: 1;
   }
 }
+
+.btn-link.active {
+  color: #f00;
+  font-weight: bold;
+}

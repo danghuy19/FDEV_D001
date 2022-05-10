@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import GreetingLogedIn from '../Modules/GreetingLogedIn';
 import LoginForm from '../Modules/LoginForm';
 
+import { NavLink } from "react-router-dom";
+
 class Header extends Component {
     constructor(props) {
         super(props);
@@ -95,12 +97,21 @@ class Header extends Component {
                             <div className="top-menu">
                                 <span className="menu"></span>
                                 <ul className="nav1">
-                                    <li className="active"><a href="index.html">Home</a></li>
+                                    {/* <li className="active"><a href="index.html">Home</a></li>
                                     <li><a href="about.html">About</a></li>
                                     <li><a href="reviews.html">Reviews</a></li>
                                     <li><a href="typo.html">News</a></li>
                                     <li><a href="gallery.html">Gallery</a></li>
-                                    <li><a href="contact.html">Mail</a></li>
+                                    <li><a href="contact.html">Mail</a></li> */}
+                                    <li>
+                                        <NavLink to="/" className={({isActive}) => (isActive)?'btn-link active':'btn-link'}>Home</NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink to="/gio-hang" className={({isActive}) => (isActive)?'btn-link active':'btn-link'}>Giỏ Hàng</NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink to="/random" className={({isActive}) => (isActive)?'btn-link active':'btn-link'}>Random</NavLink>
+                                    </li>
                                     <li>
                                         {LogedInOrNot}
                                     </li>

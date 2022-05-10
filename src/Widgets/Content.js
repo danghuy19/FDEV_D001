@@ -4,7 +4,7 @@ import GioHang from '../Pages/GioHang';
 
 import TrangChu from "../Pages/TrangChu";
 
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import RandomGroup from '../Pages/RandomGroup';
 
 
@@ -22,14 +22,11 @@ class Content extends Component {
     render() {
         return (
             <div>
-                
-                <Router>
-                    <Routes>
-                        <Route path="/" element={<TrangChu />} />
-                        <Route path="/gio-hang" element={<GioHang />} />
-                        <Route path="/random" element={<RandomGroup />} />
-                    </Routes>
-                </Router>
+                <Routes>
+                    <Route path="/" element={<TrangChu />} />
+                    <Route path="/gio-hang" element={<GioHang />} />
+                    <Route path="/random" element={<RandomGroup />} />
+                </Routes>
                 
                 <Cart CartItems={this.state.mang_gio_hang}  />
             </div>

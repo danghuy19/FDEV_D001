@@ -7,15 +7,20 @@ import DragAndDrop from './Modules/DragAndDrop';
 import GameEvent from './Modules/GameEvent';
 import RegisterForm from './Modules/RegisterForm';
 
+import { BrowserRouter as Router } from 'react-router-dom'
+
+
 function App() {
   return (
     <div>
-      <Header></Header>
-      <Content></Content>
-      {/* <RegisterForm /> */}
-      <Footer></Footer>
-      {/* <DragAndDrop /> */}
-      {/* <GameEvent /> */}
+      <Router>
+        <Header></Header>
+        <Content></Content>
+        {/* <RegisterForm /> */}
+        <Footer></Footer>
+        {/* <DragAndDrop /> */}
+        {/* <GameEvent /> */}
+      </Router>
     </div>
   );
 }
