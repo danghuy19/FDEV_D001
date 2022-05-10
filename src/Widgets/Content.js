@@ -5,6 +5,7 @@ import Poster from '../Modules/Poster';
 import Xbox from '../Modules/Xbox';
 import Cart from '../Modules/Cart';
 import FormCart from '../Modules/FormCart';
+import { confirmAlert } from 'react-confirm-alert';
 
 
 class Content extends Component {
@@ -62,13 +63,60 @@ class Content extends Component {
         })
     }
 
+    RemoveItemCart = (item) => {
+
+        const options = {
+            title: 'Confirm',
+            message: 'Bạn chắc chắn muốn xoá item này khỏi giỏ hàng hay không?',
+            buttons: [
+              {
+                label: 'Yes',
+                onClick: () => {
+                    let mang = this.state.mang_gio_hang;
+
+                    for(var i = 0; i < mang.length; i++){
+                        if(mang[i].id == item.id){
+                            mang.splice(i, 1);
+                        }
+                    }
+            
+                    //console.log(mang);
+                    this.setState(prevState => {
+                        prevState.mang_gio_hang = mang;
+                        return prevState;
+                    });
+                }
+              },
+              {
+                label: 'No',
+                onClick: () => {
+                    //do nothing
+                }
+              }
+            ],
+            childrenElement: () => <div />,
+            closeOnEscape: true,
+            closeOnClickOutside: true,
+            keyCodeForClose: [8, 32],
+            willUnmount: () => {},
+            afterClose: () => {},
+            onClickOutside: () => {},
+            onKeypressEscape: () => {},
+            overlayClassName: "overlay-custom-class-name"
+        };
+          
+        confirmAlert(options);
+        
+    }
+
     render() {
         return (
             <div>
                 <ListGame handleaddToCart={this.addToCart} />
                 <FormCart CartItems={this.state.mang_gio_hang} 
                 handleAddToCart={this.addToCart}
-                handleDescreaseItemCart={this.DescreaseItemCart} />
+                handleDescreaseItemCart={this.DescreaseItemCart} 
+                handleRemoveItemCart={this.RemoveItemCart} />
                 <LastestGame />
                 <Poster />
                 <Xbox />

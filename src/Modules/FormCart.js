@@ -19,13 +19,15 @@ class FormCart extends Component {
                                 <th>Hình</th>
                                 <th>Tên sản phẩm</th>
                                 <th>Số lượng</th>
+                                <th>Hành Động</th>
                             </tr>
                         </thead>
                         <tbody>
                             {this.props.CartItems.map(ItemCart => {
                                 return <ItemFormCart ItemCart={ItemCart} 
                                 handleAddToCart={this.props.handleAddToCart}
-                                handleDescreaseItemCart={this.props.handleDescreaseItemCart} />
+                                handleDescreaseItemCart={this.props.handleDescreaseItemCart}
+                                handleRemoveItemCart={this.props.handleRemoveItemCart} />
                             })}
                         </tbody>
                     </table>
