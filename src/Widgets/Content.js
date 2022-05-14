@@ -50,14 +50,17 @@ class Content extends Component {
 
     componentDidMount() {
         let data_string_mang_gio_hang = localStorage.getItem('cart');
-        let mang = JSON.parse(data_string_mang_gio_hang);
+        
+        if(data_string_mang_gio_hang && data_string_mang_gio_hang !== 'undefined' && data_string_mang_gio_hang !== null){
+            let mang = JSON.parse(data_string_mang_gio_hang);
 
-        this.setState(prevState => {
-            prevState.mang_gio_hang = mang;
-            return prevState;
-        })
+            this.setState(prevState => {
+                prevState.mang_gio_hang = mang;
+                return prevState;
+            })
 
-        this.countNumberQuantityInCart(mang);
+            this.countNumberQuantityInCart(mang);
+        }
     }
 
     countNumberQuantityInCart = (mang) => {
