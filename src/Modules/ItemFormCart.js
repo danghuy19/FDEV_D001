@@ -6,7 +6,7 @@ class ItemFormCart extends Component {
         super(props);
     }
 
-    handleaddToCartProcess = () => {
+    handleAddToCartProcess = () => {
         //console.log(this.props.handleAddToCart);
         this.props.handleAddToCart(this.props.ItemCart);
     }
@@ -28,7 +28,7 @@ class ItemFormCart extends Component {
                 <td>
                     <button type="button" onClick={this.handleDescreaseItemCartProcess} class="btn btn-default">-</button>
                     {this.props.ItemCart.quantity}
-                    <button type="button" onClick={this.handleaddToCartProcess} class="btn btn-default">+</button>
+                    <button type="button" onClick={this.handleAddToCartProcess} class="btn btn-default">+</button>
                 </td>
                 <td>
                     

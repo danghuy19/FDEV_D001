@@ -7,6 +7,10 @@ class FormCart extends Component {
         //console.log(this.props.handleAddToCart)
     }
 
+    handleremoveCartProcess = () => {
+        this.props.handleremoveCart();
+    }
+
     render() {
         return (
             <div>
@@ -32,7 +36,11 @@ class FormCart extends Component {
                         </tbody>
                     </table>
                 </div>
-                
+                <div className="action">
+                    
+                    <button onClick={this.handleremoveCartProcess} type="button" class="btn btn-danger">Huỷ toàn bộ giỏ hàng</button>
+                    
+                </div>
             </div>
         );
     }

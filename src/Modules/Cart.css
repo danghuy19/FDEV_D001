@@ -54,6 +54,18 @@
     opacity: 0;
 }
 
+.btn_view_detail {
+    position: absolute;
+    bottom: 180px;
+    z-index: 9;
+    left: 70px;
+    opacity: 0;
+}
+
 .game-grid:hover .btn_add_to_cart {
+    opacity: 1;
+}
+
+.game-grid:hover .btn_view_detail {
     opacity: 1;
 }
