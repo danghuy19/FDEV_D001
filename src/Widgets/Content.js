@@ -9,6 +9,7 @@ import RandomGroup from '../Pages/RandomGroup';
 import DetailProduct from '../Pages/DetailProduct';
 
 import { confirmAlert } from 'react-confirm-alert';
+import DSProduct from '../Pages/DSProduct';
 
 
 class Content extends Component {
@@ -236,6 +237,7 @@ class Content extends Component {
                     handleremoveCart={this.removeCart}
                     />} />
                     <Route path="/random" element={<RandomGroup />} />
+                    <Route path="/products" element={<DSProduct />} />
                     <Route path="/product/:id_product" element={<DetailProduct danhsachgame={this.state.listgame} />} />
                 </Routes>
                 
