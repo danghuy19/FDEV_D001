@@ -10,11 +10,31 @@ class Header extends Component {
         this.state = {
             search_value: "",
             logedInFlag: false,
-            user: {
-                username: 'hungnguyen',
-                fullname: 'Hung Nguyen',
-                password: '123456'
-            }
+            user: {},
+            list_user: [
+                {
+                    username: 'hungnguyen',
+                    fullname: 'Hung Nguyen',
+                    password: '123456'
+                },
+                {
+                    username: 'hungnguyen1',
+                    fullname: 'Hung Nguyen 1',
+                    password: '123456'
+                }
+            ]
+        }
+    }
+
+    componentDidMount(){
+        let string_login = localStorage.getItem('login_user');
+        if(string_login && string_login !== 'undefined' && string_login !== null){
+            let user_data_login = JSON.parse(string_login);
+            this.setState(prevState => {
+                prevState.user = user_data_login;
+                prevState.logedInFlag = true;
+                return prevState;
+            })
         }
     }
 
@@ -32,9 +52,17 @@ class Header extends Component {
         window.location.href = window.location.href + "?s=" + this.state.search_value;
     }
 
-    handleFunctionLogin = () => {
+    handleFunctionLogin = (username) => {
         this.setState(prevState => {
             prevState.logedInFlag = true;
+
+            let user_login = prevState.list_user.find(user => user.username == username);
+            //console.log(user_login);
+
+            prevState.user = user_login;
+            user_login.password = '';
+            localStorage.setItem('login_user', JSON.stringify(user_login));
+
             return prevState;
         })
     }
@@ -42,6 +70,8 @@ class Header extends Component {
     handleFunctionLogOut = () => {
         this.setState(prevState => {
             prevState.logedInFlag = false;
+            prevState.user = {};
+            localStorage.removeItem('login_user');
             return prevState;
         })
     }

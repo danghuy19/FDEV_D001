@@ -7,7 +7,9 @@ class LoginForm extends Component {
         this.state = {
             showOrHideForm: false,
             placeholderUsername: 'username/email',
-            placeholderPassword: 'password'
+            placeholderPassword: 'password',
+            username: '',
+            password: ''
         };
     }
 
@@ -26,8 +28,16 @@ class LoginForm extends Component {
         }
     }
 
+    handleChangeInput = (e) => {
+        //console.log( e.target.name);
+        this.setState(prevState => {
+            prevState[e.target.name] = e.target.value;
+            return prevState
+        })
+    }
+
     handleLoginProcess = () => {
-        this.props.handleLogin();
+        this.props.handleLogin(this.state.username);
     }
 
     render() {
@@ -44,14 +54,14 @@ class LoginForm extends Component {
                         <div class="form-group">
                             <div class="col-sm-12">username/email:</div>
                             <div class="col-sm-12">
-                                <input type="text" name="username" id="input" class="form-control" title="username" placeholder={this.state.placeholderUsername} />
+                                <input type="text" name="username" onChange={this.handleChangeInput} id="input" class="form-control" title="username" placeholder={this.state.placeholderUsername} />
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-sm-12">password:</div>
                             <div class="col-sm-12">
-                                <input type="password" name="password" id="input" class="form-control" title="password"  placeholder={this.state.placeholderPassword} />
+                                <input type="password" name="password" onChange={this.handleChangeInput} id="input" class="form-control" title="password"  placeholder={this.state.placeholderPassword} />
                             </div>
                         </div>
                 
