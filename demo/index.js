@@ -43,6 +43,16 @@ app.get('/products/total-page', (req, res) => {
     res.status(200).json({so_trang: number_page});
 })
 
+function process_save_product(mang_product, res){
+    try {
+        fs.writeFileSync('./data/products.json', JSON.stringify(products));
+        res.status(200).send('OK');
+    }
+    catch(error){
+        res.status(400).send(error);
+    }
+}
+
 app.post('/product', (req, res) => {
     //console.log(req.body);
     var item_sach = req.body;
@@ -52,14 +62,34 @@ app.post('/product', (req, res) => {
     products.push(item_sach);
     //console.log(products);
 
-    try {
-        fs.writeFileSync('./data/products.json', JSON.stringify(products));
-        res.status(200).send('OK');
-    }
-    catch(error){
-        res.status(400).send(error);
-    }
+    process_save_product(products, res);
     
+});
+
+app.put('/product', (req, res) => {
+    var item_sach = req.body;
+
+    for(var i = 0; i < products.length; i++){
+        if(products[i].id == item_sach.id){
+            products[i] = item_sach;
+        }
+    }
+
+    process_save_product(products, res);
+});
+
+app.delete('/product', (req, res) => {
+    var item_sach = req.query;
+
+    console.log(item_sach);
+
+    for(var i = 0; i < products.length; i++){
+        if(products[i].id == item_sach.id){
+            products.splice(i, 1);
+        }
+    }
+
+    process_save_product(products, res);
 })
 
 app.listen('4000', () => {
