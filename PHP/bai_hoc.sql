@@ -10,6 +10,19 @@ UNION ALL*/
 SELECT ten_sach, DISTINCT ten_loai_sach
 FROM bs_sach s LEFT JOIN bs_loai_sach ls ON s.id_loai_sach = ls.id
 
+-- thêm 1 nhà xuất bản
+INSERT INTO bs_nha_xuat_ban (ten_nha_xuat_ban, dien_thoai, email, dia_chi) 
+VALUES('test', '0909090909', 'test@super.com', '123 Nguyễn Đình Chiểu, P4, Q3');
+
+INSERT INTO bs_nha_xuat_ban 
+VALUES(null, 'test123', '123 Nguyễn Đình Chiểu, P4, Q3', '0909090909', 'test@super.com');
+
+--copy toàn bộ nhà xuất bản sang bảng backup
+INSERT INTO bs_nha_xuat_ban_backup
+SELECT *
+FROM bs_nha_xuat_ban
+
+
 -- demo lấy sách có trọng lượng lớn nhất
 SELECT *
 FROM bs_sach
@@ -22,6 +35,22 @@ FROM bs_nguoi_dung
 WHERE id NOT IN (SELECT DISTINCT id_nguoi_dung
 FROM bs_don_hang
 WHERE id_nguoi_dung IS NOT NULL)
+
+
+-- demo update toàn bộ giá sách tăng vì xăng tăng
+UPDATE bs_sach
+SET 
+don_gia = don_gia + 5000,
+gia_bia = gia_bia + 5000
+
+
+-- demo xoá bs_nha_xuat_ban_backup
+DELETE FROM bs_nha_xuat_ban_backup
+WHERE id = 7;
+
+
+
+
 
 /* bài 3 */
 -- câu 1
@@ -73,6 +102,67 @@ FROM bs_sach
 WHERE id_loai_sach = 17 AND id_nha_xuat_ban = 11
 ORDER BY ten_sach;
 
+-- câu 11
+SELECT *
+FROM bs_sach
+WHERE trong_luong >= 500 OR gia_bia > 150000;
+
+-- câu 12
+SELECT *
+FROM bs_sach
+WHERE don_gia BETWEEN 500000 AND 2500000;
+
+-- câu 13
+SELECT *
+FROM bs_sach
+WHERE (id_loai_sach IN (56, 90, 92)) AND trong_luong >= 350
+ORDER BY trong_luong;
+
+-- câu 14
+SELECT *
+FROM bs_sach
+WHERE id_loai_sach = 45 AND don_gia <= 60000
+
+-- câu 15
+SELECT ten_sach, sku, gioi_thieu, kich_thuoc, trong_luong, don_gia, gia_bia
+FROM bs_sach
+WHERE gioi_thieu LIKE '%huyền bí%' OR gioi_thieu LIKE '%du lịch%';
+
+-- câu 16
+SELECT *
+FROM bs_sach
+WHERE trong_luong IN (280, 350, 380);
+
+-- câu 17
+SELECT ten_sach, sku, kich_thuoc, trong_luong, don_gia, gia_bia
+FROM bs_sach
+ORDER BY don_gia DESC
+LIMIT 10;
+
+-- câu 18
+SELECT ten_sach, gioi_thieu, trong_luong, don_gia, gia_bia
+FROM bs_sach
+WHERE gioi_thieu LIKE '%mạnh%' OR gioi_thieu LIKE '%magic%'
+ORDER BY don_gia DESC
+LIMIT 3;
+
+-- câu 19
+SELECT *
+FROM bs_nha_xuat_ban
+WHERE ten_nha_xuat_ban IS NOT NULL
+AND dia_chi IS NOT NULL
+AND email IS NOT NULL
+AND dien_thoai IS NOT NULL;
+
+SELECT *
+FROM bs_nha_xuat_ban
+WHERE  (ten_nha_xuat_ban + dia_chi + email + dien_thoai) IS NOT NULL
+
+-- câu 20
+SELECT *
+FROM bs_sach
+WHERE so_trang >= 500 AND trong_luong >= 500
+
 
 
 /* bài 4 */
@@ -92,7 +182,88 @@ SELECT ten_nha_xuat_ban, AVG(s.don_gia) AS gia_trung_binh
 FROM bs_nha_xuat_ban nxb JOIN bs_sach s ON nxb.id = s.id_nha_xuat_ban
 GROUP BY nxb.id;
 
-/* bài 4 */
+-- câu 4
+SELECT ten_nha_xuat_ban, MIN(don_gia)
+FROM bs_nha_xuat_ban nxb JOIN bs_sach s ON nxb.id = s.id_nha_xuat_ban
+GROUP BY nxb.id;
+
+SELECT ten_nha_xuat_ban, MAX(don_gia)
+FROM bs_nha_xuat_ban nxb JOIN bs_sach s ON nxb.id = s.id_nha_xuat_ban
+GROUP BY nxb.id;
+
+-- câu 5
+SELECT ten_sach, SUM(so_luong) as so_luong_ban
+FROM bs_sach s JOIN bs_chi_tiet_don_hang ctdh ON s.id = ctdh.id_sach
+    JOIN bs_don_hang dh ON dh.id = ctdh.id_don_hang
+WHERE YEAR(ngay_dat) = 2016
+GROUP BY s.id
+ORDER BY so_luong_ban DESC
+LIMIT 10;
+
+-- câu 6
+SELECT ten_sach, SUM(thanh_tien) as doanh_thu
+FROM bs_sach s JOIN bs_chi_tiet_don_hang ctdh ON s.id = ctdh.id_sach
+    JOIN bs_don_hang dh ON dh.id = ctdh.id_don_hang
+WHERE YEAR(ngay_dat) = 2016
+GROUP BY s.id
+ORDER BY doanh_thu DESC
+LIMIT 10;
+
+-- câu 7
+SELECT ten_sach, SUM(thanh_tien) as doanh_thu
+FROM bs_sach s JOIN bs_chi_tiet_don_hang ctdh ON s.id = ctdh.id_sach
+    JOIN bs_don_hang dh ON dh.id = ctdh.id_don_hang
+WHERE YEAR(ngay_dat) = 2016 AND MONTH(ngay_dat) = 3
+GROUP BY s.id
+ORDER BY doanh_thu DESC
+LIMIT 3;
+
+-- câu 8
+SELECT id_don_hang, ngay_dat, tong_tien, SUM(so_luong) AS tong_so_luong
+FROM bs_don_hang dh JOIN bs_chi_tiet_don_hang ctdh ON ctdh.id_don_hang = dh.id
+GROUP BY dh.id
+
+-- câu 9
+SELECT id, ngay_dat, tong_tien
+FROM bs_don_hang
+WHERE tong_tien > 500000
+
+-- câu 10
+SELECT ten_tac_gia, COUNT(s.id) tong_so_sach
+FROM bs_sach s JOIN bs_tac_gia tg ON tg.id = s.id_tac_gia
+GROUP BY tg.id;
+
+-- câu 11
+SELECT ten_tac_gia, ten_sach, MAX(don_gia)
+FROM bs_sach s JOIN bs_tac_gia tg ON tg.id = s.id_tac_gia
+GROUP BY tg.id;
+
+-- câu 12
+SELECT ten_tac_gia, COUNT(DISTINCT nxb.id) so_luong_nxb_sach
+FROM bs_sach s JOIN bs_tac_gia tg ON tg.id = s.id_tac_gia
+    JOIN bs_nha_xuat_ban nxb ON nxb.id = s.id_nha_xuat_ban
+GROUP BY tg.id
+ORDER by so_luong_nxb_sach DESC
+LIMIT 3;
+
+-- câu 13
+SELECT ten_nha_xuat_ban, dia_chi, COUNT(DISTINCT s.id) so_sach_xuat_ban
+FROM bs_sach s JOIN bs_nha_xuat_ban nxb ON s.id_nha_xuat_ban = nxb.id
+GROUP BY nxb.id
+ORDER BY so_sach_xuat_ban DESC
+LIMIT 5;
+
+-- câu 14
+SELECT ten_nha_xuat_ban, COUNT(DISTINCT tg.id) so_luong_tac_gia
+FROM bs_sach s JOIN bs_tac_gia tg ON tg.id = s.id_tac_gia
+    JOIN bs_nha_xuat_ban nxb ON nxb.id = s.id_nha_xuat_ban
+GROUP BY nxb.id
+ORDER BY so_luong_tac_gia DESC
+LIMIT 3;
+
+
+
+/* bài 5 */
 -- câu 1
 SELECT *
 FROM bs_nha_xuat_ban
@@ -105,10 +276,138 @@ SELECT *
 FROM bs_nguoi_dung
 WHERE id NOT IN (SELECT DISTINCT id_nguoi_dung
 FROM bs_don_hang
-WHERE id_nguoi_dung IS NOT NULL)
+WHERE id_nguoi_dung IS NOT NULL);
 
 -- câu 3
 SELECT nd.*, tong_tien
 FROM bs_nguoi_dung nd JOIN bs_don_hang dh ON nd.id = dh.id_nguoi_dung
 WHERE tong_tien = (SELECT MAX(tong_tien)
-FROM bs_don_hang)
+FROM bs_don_hang);
+
+-- câu 4
+SELECT *
+FROM bs_sach
+WHERE id_loai_sach IN (
+    SELECT id
+    FROM bs_loai_sach
+    WHERE id_loai_cha = (SELECT id
+        FROM bs_loai_sach
+        WHERE ten_loai_sach = 'Sách Văn Học - Tiểu Thuyết')
+);
+
+-- câu 5
+SELECT *
+FROM bs_sach
+WHERE id_nha_xuat_ban = (
+    SELECT id_nha_xuat_ban
+    FROM bs_sach
+    WHERE sku = '9780723295273'
+);
+
+-- câu 6
+SELECT *
+FROM bs_loai_sach
+WHERE id NOT IN(
+    SELECT DISTINCT ls.id
+    FROM bs_loai_sach ls JOIN bs_sach s ON ls.id = s.id_loai_sach
+);
+
+-- câu 7
+SELECT *
+FROM bs_sach
+WHERE id_loai_sach = (
+    SELECT id
+    FROM (
+        SELECT ls.id, COUNT(DISTINCT s.id) so_sach
+        FROM bs_loai_sach ls JOIN bs_sach s ON s.id_loai_sach = ls.id
+        GROUP BY ls.id
+        ORDER BY so_sach DESC
+        LIMIT 1
+    ) AS temp
+);
+
+-- câu 8
+SELECT *
+FROM bs_sach
+WHERE id_tac_gia IN (
+    SELECT id
+    FROM (
+        SELECT tg.id, COUNT(DISTINCT nxb.id) AS so_luong_nxb_sach
+        FROM bs_tac_gia tg JOIN bs_sach s ON s.id_tac_gia = tg.id
+            JOIN bs_nha_xuat_ban nxb ON nxb.id = s.id_nha_xuat_ban
+        GROUP BY tg.id
+        HAVING so_luong_nxb_sach = (
+            SELECT COUNT(DISTINCT nxb.id) AS so_luong_nxb_sach
+            FROM bs_tac_gia tg JOIN bs_sach s ON s.id_tac_gia = tg.id
+                JOIN bs_nha_xuat_ban nxb ON nxb.id = s.id_nha_xuat_ban
+            GROUP BY tg.id
+            ORDER BY so_luong_nxb_sach DESC
+            LIMIT 1
+        )
+    ) AS temp
+);
+
+-- câu 9
+SELECT *
+FROM bs_sach
+WHERE id_nha_xuat_ban IN (
+    SELECT id
+    FROM (
+        SELECT nxb.id, COUNT(DISTINCT tg.id) AS so_luong_tac_gia
+        FROM bs_tac_gia tg JOIN bs_sach s ON s.id_tac_gia = tg.id
+            JOIN bs_nha_xuat_ban nxb ON nxb.id = s.id_nha_xuat_ban
+        GROUP BY nxb.id
+        HAVING so_luong_tac_gia >= (
+            SELECT MIN(so_luong_tac_gia)
+            FROM (
+                SELECT ten_nha_xuat_ban, COUNT(DISTINCT tg.id) AS so_luong_tac_gia
+                FROM bs_tac_gia tg JOIN bs_sach s ON s.id_tac_gia = tg.id
+                    JOIN bs_nha_xuat_ban nxb ON nxb.id = s.id_nha_xuat_ban
+                GROUP BY nxb.id
+                ORDER BY so_luong_tac_gia DESC
+                LIMIT 3
+            ) AS temp
+        )
+    ) AS temp2
+);
+    
+
+
+
+
+
+
+
+
+
+-- bài 8
+-- câu 1
+INSERT INTO bs_nguoi_dung(
+tai_khoan,
+mat_khau,
+id_loai_user,
+id_phan_quyen,
+ho_ten,
+email,
+ngay_sinh,
+dia_chi)
+VALUES('linhnguyen', 'e10adc3949ba59abbe56e057f20f883e', 2, null, 'Linh Nguyễn', 'linhnguyen@gmail.com', '1992-06-13', '20 Đường 3/2 P5, Quận 10, TPHCM')
+
+
+-- câu 3
+INSERT INTO bs_sach_tam
+SELECT *
+FROM bs_sach;
+
+
+-- bài 9
+-- câu 1
+UPDATE bs_sach_tam
+SET don_gia = 999000
+--WHERE ten_sach = 'Harry Potter 7 Volume Children\'S Paperback Boxed Set'
+
+
+-- bài 10
+-- câu 1
+DELETE FROM bs_sach_tam
+WHERE id = 91
