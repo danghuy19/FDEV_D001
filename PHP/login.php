@@ -130,7 +130,7 @@ if(isset($_POST['uname']) && isset($_POST['psw'])){
         <?php
         $show_or_hide_form = 1;
         if(isset($_SESSION['user_info']) || isset($_COOKIE['user_info'])){
-            header('localtion: xin_chao.php');
+            header('location: xin_chao.php');
             $show_or_hide_form = 0;
         }
 

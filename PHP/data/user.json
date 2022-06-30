@@ -1,12 +1,1 @@
-[
-    {
-        "uname": "hungnguyen",
-        "psw": "123456",
-        "fullname": "Hùng Nguyễn"
-    },
-    {
-        "uname": "nampham",
-        "psw": "000000",
-        "fullname": "Nam Phạm"
-    }
-]
+[{"uname":"hungnguyen","psw":"123456","fullname":"Hu\u0300ng Nguy\u00ea\u0303n"},{"uname":"nampham","psw":"000000","fullname":"Nam Pha\u0323m"},{"uname":"hungnguyen1","psw":"123456789","fullname":"Hu\u0300ng Test"},{"uname":"hungnguyen2","psw":"123456","fullname":"Hu\u0300ng Nguy\u00ea\u0303n Xu\u00e2n"}]

@@ -1,8 +1,8 @@
 <?php
 session_start();
-//echo '<pre>',print_r($_POST),'</pre>';
-$string_data_user = file_get_contents('data/user.json');
-$mang_user = json_decode($string_data_user);
+echo '<pre>',print_r($_POST),'</pre>';
+// $string_data_user = file_get_contents('data/user.json');
+// $mang_user = json_decode($string_data_user);
 //echo '<pre>',print_r($mang_user),'</pre>';
 
 if(isset($_SESSION['user_info']) || isset($_COOKIE['user_info'])){
@@ -10,33 +10,79 @@ if(isset($_SESSION['user_info']) || isset($_COOKIE['user_info'])){
     die();
 }
 
+// if(isset($_POST['tai_khoan']) && isset($_POST['mat_khau']) && isset($_POST['re_mat_khau']) && isset($_POST['ho_ten'])){
+//     if($_POST['tai_khoan'] && $_POST['mat_khau'] && $_POST['re_mat_khau'] && $_POST['ho_ten']){
+//         if($_POST['mat_khau'] == $_POST['re_mat_khau']){
+//             $flag_exist = 0;
+//             foreach($mang_user as $user_exist){
+//                 if($user_exist->tai_khoan == $_POST['tai_khoan']){
+//                     $flag_exist = 1;
+//                     break;
+//                 }
+//             }
+
+//             if($flag_exist == 0){
+//                 $user_new = new stdClass;
+//                 $user_new->tai_khoan = $_POST['tai_khoan'];
+//                 $user_new->mat_khau = $_POST['mat_khau'];
+//                 $user_new->ho_ten = $_POST['ho_ten'];
+//                 $mang_user[] = $user_new;
+//                 $string_data_user_new = json_encode($mang_user);
+//                 file_put_contents('data/user.json', $string_data_user_new);
+//                 echo 'Tạo tài khoản thành công. Sau 5 giây bạn sẽ tự động đăng nhập và chuyển sang trang thông tin';
+//                 sleep(5);
+//                 $_SESSION['user_info'] = $user_new;
+//                 header('location: xin_chao.php');
+//             }
+//             else{
+//                 echo 'Username đã tồn tại, vui lòng dùng username khác';
+//             }
+//         }
+//         else {
+//             echo 'Mật khẩu không khớp, vui lòng kiểm tra lại';
+//         }
+//     }
+//     else{
+//         echo 'Vui lòng nhập đầy đủ thông tin';
+//     }
+// }
+
 if(isset($_POST['tai_khoan']) && isset($_POST['mat_khau']) && isset($_POST['re_mat_khau']) && isset($_POST['ho_ten'])){
+    $tai_khoan = $_POST['tai_khoan'];
+    $mat_khau = $_POST['mat_khau'];
+    $ho_ten = $_POST['ho_ten'];
+    $email = $_POST['email'];
+    $ngay_sinh = $_POST['ngay_sinh'];
+    $dia_chi = $_POST['dia_chi'];
+    $dien_thoai = $_POST['dien_thoai'];
+
+
     if($_POST['tai_khoan'] && $_POST['mat_khau'] && $_POST['re_mat_khau'] && $_POST['ho_ten']){
         if($_POST['mat_khau'] == $_POST['re_mat_khau']){
-            $flag_exist = 0;
-            foreach($mang_user as $user_exist){
-                if($user_exist->tai_khoan == $_POST['tai_khoan']){
-                    $flag_exist = 1;
-                    break;
-                }
+            $dbh = new PDO('mysql:host=localhost;dbname=ban_sach_online_db', 'root', '');
+
+            
+
+            $sql = "INSERT INTO bs_nguoi_dung(tai_khoan, mat_khau, id_loai_user, ho_ten, email, ngay_sinh, dia_chi, dien_thoai)
+            VALUES('$tai_khoan', '$mat_khau', 1, '$ho_ten', '$email', '$ngay_sinh', '$dia_chi', '$dien_thoai')";
+            $result = $dbh->exec($sql);
+
+            if($result !== false){
+                $user_new = new stdClass;
+                $user_new->tai_khoan = $tai_khoan;
+                $user_new->ho_ten = $ho_ten;
+                $_SESSION['user_info'] = $user_new;
+                echo "<script>
+                    alert('Bạn đã đăng ký thành công');
+                    window.location.href = 'xin_chao.php';
+                </script>";
+            }
+            else {
+                echo "<script>alert('Có lỗi xảy ra trong quá trình đăng ký, Bạn vui lòng thử lại')</script>";
             }
 
-            if($flag_exist == 0){
-                $user_new = new stdClass;
-                $user_new->tai_khoan = $_POST['tai_khoan'];
-                $user_new->mat_khau = $_POST['mat_khau'];
-                $user_new->ho_ten = $_POST['ho_ten'];
-                $mang_user[] = $user_new;
-                $string_data_user_new = json_encode($mang_user);
-                file_put_contents('data/user.json', $string_data_user_new);
-                echo 'Tạo tài khoản thành công. Sau 5 giây bạn sẽ tự động đăng nhập và chuyển sang trang thông tin';
-                sleep(5);
-                $_SESSION['user_info'] = $user_new;
-                header('location: xin_chao.php');
-            }
-            else{
-                echo 'Username đã tồn tại, vui lòng dùng username khác';
-            }
+            $dbh = null;
+            //header('location: xin_chao.php');
         }
         else {
             echo 'Mật khẩu không khớp, vui lòng kiểm tra lại';
