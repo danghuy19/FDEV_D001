@@ -1,4 +1,6 @@
 <?php
+include_once('../libraries/xl_loai_sach.php');
+
 $page = $_GET['page'];
 $chuc_nang = $_GET['chuc_nang'];
 ?>
@@ -27,8 +29,13 @@ include_once('widgets/head.php');
             
                 <?php
                 if($page == 'loai-sach'){
+                    $xl_loai_sach = new xl_loai_sach();
+
                     if($chuc_nang == 'them'){
                         include_once('pages/ql_loai_sach/them.php');
+                    }
+                    else if($chuc_nang == 'sua'){
+                        include_once('pages/ql_loai_sach/sua.php');
                     }
                     else{
                         include_once('pages/ql_loai_sach/index.php');

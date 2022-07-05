@@ -14,8 +14,7 @@
     $dbh = new PDO('mysql:host=localhost;dbname=ban_sach_online_db;charset=utf8', 'root', '');
     //echo '<pre>',print_r($_GET),'</pre>';
     if(isset($_GET['id_xoa'])){
-        $sql = "DELETE FROM bs_loai_sach WHERE id = " . $_GET['id_xoa'];
-        $result = $dbh->exec($sql);
+        
         if($result !== false){
             ?>
             <script>
@@ -34,11 +33,8 @@
     }
 
 
-    $sql = "SELECT * FROM bs_loai_sach";
-    $sth = $dbh->prepare($sql);
-    $sth->execute();
-    $ds_loai_sach = $sth->fetchAll(PDO::FETCH_OBJ);
-    //echo '<pre>',print_r($ds_loai_sach),'</pre>';
+    //load danh sách loại sách
+    $ds_loai_sach = $xl_loai_sach->load_toan_bo_danh_sach_loai_sach();
     ?>
 
     <!-- Page Header -->
@@ -75,9 +71,11 @@
                             <td><?php echo $loai_sach->trang_thai ?></td>
                             <td>
 
-                                <button type="button" class="btn btn-info">
-                                    Sửa
-                                </button>
+                                <a href="?page=loai-sach&chuc_nang=sua&id_sua=<?php echo $loai_sach->id; ?>">
+                                    <button type="button" class="btn btn-info">
+                                        Sửa
+                                    </button>
+                                </a>
 
                                 <a href="?page=loai-sach&id_xoa=<?php echo $loai_sach->id; ?>" onclick="return check_before_delete();">
                                     <button type="button" class="btn btn-danger">
