@@ -1,42 +1,16 @@
-<script>
-    function check_before_delete(){
-        var kq = confirm('Bạn có chắc chắn muốn xoá loại sách này không?');
-        if(kq){
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-</script>
+<?php
+add_confirm_box_before_delete();
+
+if(isset($result)){
+    notice_after_process($result, 'Đã xoá thành công loại sách có id là ' . $_GET['id_xoa'], 'Có lỗi xảy ra trong lúc xoá loại sách id là ' . $_GET['id_xoa'], 'loai-sach');
+}
+?>
+
+<link rel="stylesheet" href="http://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+<script src="http://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
+
 <div class="row">
-    <?php
-    $dbh = new PDO('mysql:host=localhost;dbname=ban_sach_online_db;charset=utf8', 'root', '');
-    //echo '<pre>',print_r($_GET),'</pre>';
-    if(isset($_GET['id_xoa'])){
-        
-        if($result !== false){
-            ?>
-            <script>
-                alert('Đã xoá thành công loại sách có id là <?php echo $_GET['id_xoa']; ?>');
-                window.location.href = '?page=loai-sach';
-            </script>
-            <?php
-        }
-        else{
-            ?>
-            <script>
-                alert('Có lỗi xảy ra trong lúc xoá loại sách id là <?php echo $_GET['id_xoa']; ?>')
-            </script>
-            <?php
-        }
-    }
-
-
-    //load danh sách loại sách
-    $ds_loai_sach = $xl_loai_sach->load_toan_bo_danh_sach_loai_sach();
-    ?>
-
     <!-- Page Header -->
     <div class="col-lg-12">
         <h1 class="page-header">Quản lý loại sách</h1>
@@ -44,13 +18,34 @@
         <a href="?page=loai-sach&chuc_nang=them">
             <button type="button" class="btn btn-primary">Thêm loại sách mới</button>
         </a>
+        <div class="contain_form_tim_kiem">
+            
+            <form action="" method="POST" class="form-horizontal" role="form">
+                <div class="form-group">
+                    <legend>Tìm kiếm</legend>
+                </div>
+        
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <input type="text" name="tim_kiem" id="inputtim_kiem" class="form-control" value="" title="">
+                    </div>
+                </div>
+        
+                <div class="form-group">
+                    <div class="col-sm-10 col-sm-offset-2">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </form>
+            
+        </div>
         
     </div>
     <!--End Page Header -->
     <div class="main_content">
 
         <div class="table-responsive">
-            <table class="table table-hover table-striped">
+            <table id="ds_loai_sach" class="table table-hover table-striped">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -92,6 +87,12 @@
                 </tbody>
             </table>
         </div>
+        <script>
+            // $(document).ready( function () {
+            //     console.log($('#ds_loai_sach'));
+            //     $('#ds_loai_sach').DataTable();
+            // });
+        </script>
 
     </div>
 </div>

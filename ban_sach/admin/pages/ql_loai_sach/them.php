@@ -1,5 +1,3 @@
-
-
 <div class="row">
     <!-- page header -->
     <div class="col-lg-12">
@@ -9,41 +7,9 @@
 </div>
 
 <?php
-
-if(isset($_POST['ten_loai_sach'])){
-    $ten_loai_sach = $_POST['ten_loai_sach'];
-    $id_loai_cha = $_POST['id_loai_cha'];
-    $trang_thai = (isset($_POST['trang_thai']))?1:0;
-
-    $xl_loai_sach->them_loai_sach_moi($ten_loai_sach, $id_loai_cha, $trang_thai);
-    if($result !== false){
-        ?>
-        <script>
-            alert('thêm loại sách mới thành công');
-            window.location.href = '?page=' + '<?php echo $_GET['page'] ?>';
-        </script>
-        <?php
-    }
-    else{
-        ?>
-        <script>
-            alert('thêm loại sách mới thất bại, vui lòng kiểm tra và thử lại');
-        </script>
-        <?php 
-    }
+if(isset($result)){
+    notice_after_process($result, 'thêm loại sách mới thành công', 'thêm loại sách mới thất bại, vui lòng kiểm tra và thử lại', $_GET['page']);
 }
-?>
-
-<?php
-    
-    $ds_loai_sach_cap_1 = $xl_loai_sach->load_toan_bo_danh_sach_loai_sach(0);
-
-    foreach($ds_loai_sach_cap_1 as $loai_sach_cap_1){
-        $ds_loai_sach_cap_2 = $xl_loai_sach->load_toan_bo_danh_sach_loai_sach($loai_sach_cap_1->id);
-        $loai_sach_cap_1->ds_loai_con = $ds_loai_sach_cap_2;
-    }
-
-    //echo '<pre>',print_r($ds_loai_sach_cap_1),'</pre>';
 ?>
 
 <div class="row">

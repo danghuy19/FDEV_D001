@@ -1,5 +1,5 @@
 <?php
-include_once('../libraries/xl_loai_sach.php');
+include_once('../libraries/functions_support_view.php');
 
 $page = $_GET['page'];
 $chuc_nang = $_GET['chuc_nang'];
@@ -29,17 +29,33 @@ include_once('widgets/head.php');
             
                 <?php
                 if($page == 'loai-sach'){
-                    $xl_loai_sach = new xl_loai_sach();
+
+                    include_once('controllers/c_loai_sach.php');
+                    $controller = new c_loai_sach();
 
                     if($chuc_nang == 'them'){
-                        include_once('pages/ql_loai_sach/them.php');
+                        //include_once('pages/ql_loai_sach/them.php');
+                        $controller->them();
                     }
                     else if($chuc_nang == 'sua'){
-                        include_once('pages/ql_loai_sach/sua.php');
+                        //include_once('pages/ql_loai_sach/sua.php');
                     }
                     else{
-                        include_once('pages/ql_loai_sach/index.php');
+                        $controller->index();
                     }
+                    
+                    // $xl_loai_sach = new xl_loai_sach();
+
+                    // if($chuc_nang == 'them'){
+                    //     include_once('pages/ql_loai_sach/them.php');
+                    // }
+                    // else if($chuc_nang == 'sua'){
+                    //     include_once('pages/ql_loai_sach/sua.php');
+                    // }
+                    // else{
+                    //     include_once('pages/ql_loai_sach/index.php');
+
+                    // }
                 }
                 else if($page == 'sach'){
                     include_once('pages/ql_sach/index.php');
@@ -59,11 +75,11 @@ include_once('widgets/head.php');
     <!-- end wrapper -->
 
     <!-- Core Scripts - Include with every page -->
-    <script src="assets/plugins/jquery-1.10.2.js"></script>
+    <!-- <script src="assets/plugins/jquery-1.10.2.js"></script>
     <script src="assets/plugins/bootstrap/bootstrap.min.js"></script>
     <script src="assets/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script src="assets/plugins/pace/pace.js"></script>
-    <script src="assets/scripts/siminta.js"></script>
+    <script src="assets/scripts/siminta.js"></script> -->
 
 </body>
 

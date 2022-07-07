@@ -2,13 +2,18 @@
 include_once('../libraries/database.php');
 class xl_loai_sach extends Database {
 
-    function load_toan_bo_danh_sach_loai_sach($id_loai_cha = false){
+    function load_toan_bo_danh_sach_loai_sach($id_loai_cha = false, $tim_kiem = false){
         $sql = "SELECT * FROM bs_loai_sach";
 
         if($id_loai_cha !== false){
             $sql .= " WHERE id_loai_cha = " . $id_loai_cha;
         }
 
+        if($tim_kiem !== false){
+            $sql .= " WHERE ten_loai_sach LIKE '%$tim_kiem%' ";
+        }
+
+        //echo $sql;
         $this->setQuery($sql);
         $ds_loai_sach = $this->loadAllRow();
         return $ds_loai_sach;
