@@ -40,6 +40,9 @@
             <li>
                 <a href="?page=sach"><i class="fa fa-bar-chart-o fa-fw"></i>Quản lý sách</a>
             </li>
+            <li>
+                <a href="?page=nha-xuat-ban"><i class="fa fa-bar-chart-o fa-fw"></i>Quản lý nhà xuất bản</a>
+            </li>
             <!-- <li class="">
                 <a href="index.html"><i class="fa fa-dashboard fa-fw"></i>Dashboard</a>
             </li>

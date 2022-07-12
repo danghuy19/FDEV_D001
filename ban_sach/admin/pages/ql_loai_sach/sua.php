@@ -1,17 +1,7 @@
 
 <?php
 //echo '<pre>',print_r($_SERVER),'</pre>';
-$id_sua = '';
-if(isset($_GET['id_sua'])){
-    $id_sua = $_GET['id_sua'];
-}
-else {
-    ?>
-    <script>
-        window.location.href = '?page=loai-sach';
-    </script>
-    <?php
-}
+
 ?>
 <div class="row">
     <!-- page header -->
@@ -22,44 +12,9 @@ else {
 </div>
 
 <?php
-$info_loai_sach_sua = $xl_loai_sach->load_info_loai_sach($id_sua);
-//echo '<pre>',print_r($info_loai_sach_sua),'</pre>';
-
-//echo '<pre>',print_r($_POST),'</pre>';
-if(isset($_POST['ten_loai_sach'])){
-    $ten_loai_sach = $_POST['ten_loai_sach'];
-    $id_loai_cha = $_POST['id_loai_cha'];
-    $trang_thai = (isset($_POST['trang_thai']))?1:0;
-
-    $xl_loai_sach->sua_loai_sach($ten_loai_sach, $id_loai_cha, $trang_thai, $id_sua);
-    if($result !== false){
-        ?>
-        <script>
-            alert('Sửa thông tin loại sách thành công');
-            window.location.href = '?page=' + '<?php echo $_GET['page'] ?>';
-        </script>
-        <?php
-    }
-    else{
-        ?>
-        <script>
-            alert('Sửa loại sách thất bại, vui lòng kiểm tra và thử lại');
-        </script>
-        <?php 
-    }
+if(isset($result)){
+    notice_after_process($result, 'Sửa thông tin loại sách thành công', 'Sửa loại sách thất bại, vui lòng kiểm tra và thử lại', $_GET['page']);
 }
-?>
-
-<?php
-    
-    $ds_loai_sach_cap_1 = $xl_loai_sach->load_toan_bo_danh_sach_loai_sach(0);
-
-    foreach($ds_loai_sach_cap_1 as $loai_sach_cap_1){
-        $ds_loai_sach_cap_2 = $xl_loai_sach->load_toan_bo_danh_sach_loai_sach($loai_sach_cap_1->id);
-        $loai_sach_cap_1->ds_loai_con = $ds_loai_sach_cap_2;
-    }
-
-    //echo '<pre>',print_r($ds_loai_sach_cap_1),'</pre>';
 ?>
 
 <div class="row">

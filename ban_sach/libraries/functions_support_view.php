@@ -32,4 +32,12 @@ function add_confirm_box_before_delete(){
     </script>
     <?php
 }
+
+function redirect_by_javascript($page = ''){
+    ?>
+    <script>
+        window.location.href = '?page=<?= $page ?>';
+    </script>
+    <?php
+}
 ?>

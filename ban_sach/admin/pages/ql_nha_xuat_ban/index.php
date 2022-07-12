@@ -2,27 +2,21 @@
 add_confirm_box_before_delete();
 
 if(isset($result)){
-    notice_after_process($result, 'Đã xoá thành công sách có id là ' . $_GET['id_xoa'], 'Có lỗi xảy ra trong lúc xoá sách id là ' . $_GET['id_xoa'], 'sach');
+    notice_after_process($result, 'Đã xoá thành công nhà xuất bản có id là ' . $_GET['id_xoa'], 'Có lỗi xảy ra trong lúc xoá nhà xuất bản id là ' . $_GET['id_xoa'], 'nha-xuat-ban');
 }
 ?>
 
 <link rel="stylesheet" href="http://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
 <script src="http://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 
-<style>
-    #ds_sach img {
-        max-width: 50px;
-        cursor: pointer;
-    }
-</style>
 
 <div class="row">
     <!-- Page Header -->
     <div class="col-lg-12">
-        <h1 class="page-header">Quản lý sách</h1>
+        <h1 class="page-header">Quản lý nhà xuất bản</h1>
         
-        <a href="?page=sach&chuc_nang=them">
-            <button type="button" class="btn btn-primary">Thêm sách mới</button>
+        <a href="?page=nha-xuat-ban&chuc_nang=them">
+            <button type="button" class="btn btn-primary">Thêm nhà xuất bản mới</button>
         </a>
         <div class="contain_form_tim_kiem">
             
@@ -51,48 +45,35 @@ if(isset($result)){
     <div class="main_content">
 
         <div class="table-responsive">
-            <table id="ds_sach" class="table table-hover table-striped">
+            <table id="ds_nha_xuat_ban" class="table table-hover table-striped">
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Tên sách</th>
-                        <th>Trạng thái</th>
-                        <th>Nổi bật</th>
-                        <th>Chức năng</th>
+                        <th>Tên nhà xuất bản</th>
+                        <th>Tên địa chỉ</th>
+                        <th>Điện thoại</th>
+                        <th>Email</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    foreach ($ds_sach as $sach) {
+                    foreach ($ds_nha_xuat_ban as $nha_xuat_ban) {
                     ?>
                         <tr>
-                            <td><?php echo $sach->id ?></td>
-                            <td><?php echo $sach->ten_sach ?></td>
-                            <td>
-                                <form action="" method="POST">
-                                    <input type="hidden" name="trang_thai" value="<?= $sach->id ?>">
-                                    <button type="submit">
-                                        <img src="assets/img/<?php echo ($sach->trang_thai)?'tick.ico':'delete.jpg' ?>" alt="">
-                                    </button>
-                                </form>
-                            </td>
-                            <td>
-                                <form action="" method="POST">
-                                    <input type="hidden" name="noi_bat" value="<?= $sach->id ?>">
-                                    <button type="submit">
-                                        <img src="assets/img/<?php echo ($sach->noi_bat)?'tick.ico':'ignore.png' ?>" alt="">
-                                    </button>
-                                </form>
-                            </td>
+                            <td><?php echo $nha_xuat_ban->id ?></td>
+                            <td><?php echo $nha_xuat_ban->ten_nha_xuat_ban ?></td>
+                            <td><?php echo $nha_xuat_ban->dia_chi ?></td>
+                            <td><?php echo $nha_xuat_ban->dien_thoai ?></td>
+                            <td><?php echo $nha_xuat_ban->email ?></td>
                             <td>
 
-                                <a href="?page=sach&chuc_nang=sua&id_sua=<?php echo $sach->id; ?>">
+                                <a href="?page=nha-xuat-ban&chuc_nang=sua&id_sua=<?php echo $nha_xuat_ban->id; ?>">
                                     <button type="button" class="btn btn-info">
                                         Sửa
                                     </button>
                                 </a>
 
-                                <a href="?page=sach&id_xoa=<?php echo $sach->id; ?>" onclick="return check_before_delete();">
+                                <a href="?page=nha-xuat-ban&id_xoa=<?php echo $nha_xuat_ban->id; ?>" onclick="return check_before_delete();">
                                     <button type="button" class="btn btn-danger">
                                         Xoá
                                     </button>
@@ -109,8 +90,8 @@ if(isset($result)){
         </div>
         <script>
             // $(document).ready( function () {
-            //     console.log($('#ds_sach'));
-            //     $('#ds_sach').DataTable();
+            //     console.log($('#ds_nha_xuat_ban'));
+            //     $('#ds_nha_xuat_ban').DataTable();
             // });
         </script>
 

@@ -34,31 +34,43 @@ include_once('widgets/head.php');
                     $controller = new c_loai_sach();
 
                     if($chuc_nang == 'them'){
-                        //include_once('pages/ql_loai_sach/them.php');
                         $controller->them();
                     }
                     else if($chuc_nang == 'sua'){
-                        //include_once('pages/ql_loai_sach/sua.php');
+                        $controller->sua();
                     }
                     else{
                         $controller->index();
                     }
-                    
-                    // $xl_loai_sach = new xl_loai_sach();
+                }
+                else if($page == 'nha-xuat-ban'){
 
-                    // if($chuc_nang == 'them'){
-                    //     include_once('pages/ql_loai_sach/them.php');
-                    // }
-                    // else if($chuc_nang == 'sua'){
-                    //     include_once('pages/ql_loai_sach/sua.php');
-                    // }
-                    // else{
-                    //     include_once('pages/ql_loai_sach/index.php');
+                    include_once('controllers/c_nha_xuat_ban.php');
+                    $controller = new c_nha_xuat_ban();
 
-                    // }
+                    if($chuc_nang == 'them'){
+                        $controller->them();
+                    }
+                    else if($chuc_nang == 'sua'){
+                        $controller->sua();
+                    }
+                    else{
+                        $controller->index();
+                    }
                 }
                 else if($page == 'sach'){
-                    include_once('pages/ql_sach/index.php');
+                    include_once('controllers/c_sach.php');
+                    $controller = new c_sach();
+
+                    if($chuc_nang == 'them'){
+                        $controller->them();
+                    }
+                    else if($chuc_nang == 'sua'){
+                        $controller->sua();
+                    }
+                    else{
+                        $controller->index();
+                    }
                 }
                 else {
                     include_once('pages/thong_ke/index.php');
