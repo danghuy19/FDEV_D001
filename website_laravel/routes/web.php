@@ -18,7 +18,14 @@ Route::get('/', function () {
 });
 
 Route::get('/danh-sach-san-pham', function(){
-    return view('danh_sach_san_pham');
+    $cau_chao = '<div><b>Xin chào các bạn</b></div>';
+    $cau_chao_status = 'failed';
+    $ds_san_pham = json_decode(file_get_contents(storage_path() . "/test_data.json"));
+    //$ds_san_pham = json_decode($ds_san_pham);
+    return view('danh_sach_san_pham')
+        ->with('cau_chao_test', $cau_chao)
+        ->with('cau_chao_status', $cau_chao_status)
+        ->with('ds_san_pham', $ds_san_pham);
     // return 'test info';
 });
 
