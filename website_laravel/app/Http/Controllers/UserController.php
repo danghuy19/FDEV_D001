@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Form;
+use App\Http\Requests\CreateUserRequest;
 
 class UserController extends Controller
 {
@@ -23,7 +25,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateUserRequest $request)
     {
         //
         return 'store function';
@@ -64,5 +66,9 @@ class UserController extends Controller
     {
         //
         return 'destroy function';
+    }
+
+    public function createNewAccount(){
+        return view('trang_dang_ky');
     }
 }

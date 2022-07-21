@@ -43,6 +43,13 @@ Route::any('/call-by-all-method', function(){
     return 'test xem sao với route any';
 });
 
+Route::get('/dang-ky', 'App\Http\Controllers\UserController@createNewAccount');
+
+Route::post('/save-register', [
+    'as' => 'savecreatenewaccount',
+    'uses' => 'App\Http\Controllers\UserController@store'
+]);
+
 
 //Route::controller('/test-route-controller', 'App\Http\Controllers\test_controller');
 //remove from laravel higher than version 5
