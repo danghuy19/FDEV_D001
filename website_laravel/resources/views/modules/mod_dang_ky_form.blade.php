@@ -18,14 +18,16 @@ Form::macro('colorfield', function($name)
                 Đăng ký
             </h2>
 
+            @if($errors->first())
             <div class="error_message panel panel-danger">
-                <div class="panel-heading">Please check this error</div>
+                <div class="panel-heading">Vui lòng kiểm tra lỗi</div>
                 @foreach($errors->all() as $message_error)
                     <div class="panel-body item_message text-danger">{{$message_error}}</div>
                 @endforeach
             </div>
+            @endif
 
-            {!! Form::open(array('route' => 'savecreatenewaccount', 'class' => 'register_form')) !!}
+            {!! Form::open(array('route' => 'savecreatenewaccount', 'class' => 'register_form', 'files'=>true)) !!}
                 
                 <!-- username -->
                 {!! Form::label('username', "Username") !!}
@@ -35,9 +37,17 @@ Form::macro('colorfield', function($name)
                 {!! Form::label('password', "Password") !!}
                 {!! Form::password('password', array("class" => "form-control")) !!}
 
+                <!-- password -->
+                {!! Form::label('password_confirmation', "Confirmed Password") !!}
+                {!! Form::password('password_confirmation', array("class" => "form-control")) !!}
+
                 <!-- Email -->
                 {!! Form::label('email', "Email") !!}
-                {!! Form::email('email', null, array("class" => "form-control")) !!}
+                {!! Form::text('email', null, array("class" => "form-control")) !!}
+
+                <!-- Avatar -->
+                {!! Form::label('avatar', "Avatar") !!}
+                {!! Form::file('avatar', null, array("class" => "form-control")) !!}
 
                 <!-- ngày sinh -->
                 {!! Form::label('date_of_birth', 'Date of Birth') !!}
