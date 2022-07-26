@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class SachController extends Controller
 {
@@ -37,7 +38,25 @@ class SachController extends Controller
     public function store(Request $request)
     {
         //
-        return 'store function';
+        $files_hinh = $request->file('ds_hinh');
+        //echo "<pre>",print_r($files_hinh),"</pre>";
+
+        $cur_time = time();
+
+        if(count($files_hinh) > 0){
+            foreach($files_hinh as $hinh){
+                //echo "<pre>",print_r($hinh),"</pre>";
+                $name_file = $hinh->getClientOriginalName();
+                $arr_name_file = explode('.', $name_file);
+
+                $public_path = public_path();
+                if($hinh->isValid()){
+                    $hinh->move($public_path . '/images/sach_test', $arr_name_file[0] . '_' . $cur_time . $arr_name_file[count($arr_name_file) - 1]);
+                }
+            }
+        }
+
+        return 'store function successfull';
     }
 
     /**
@@ -87,5 +106,10 @@ class SachController extends Controller
     {
         //
         return 'destroy function';
+    }
+
+    public function createNewSach(){
+        Session::put('user_id', '100');
+        return view('them_sach');
     }
 }

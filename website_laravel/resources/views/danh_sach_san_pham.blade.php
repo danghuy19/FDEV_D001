@@ -22,6 +22,8 @@
         </div>
     @endif
 
+    {{$user_id}}
+
     <form action="/test-match" method="POST">
         @csrf
         <!-- Equivalent for @csrf directive -->

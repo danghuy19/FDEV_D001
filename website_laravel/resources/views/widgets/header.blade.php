@@ -222,8 +222,18 @@
                             <span class="glyphicon glyphicon-shopping-cart"></span>
                         </a>
                     </li>
-                    <li><a href="#" id="myBtn"><span class="glyphicon glyphicon-user"></span> Đăng
+                    @if(isset($user_info))
+                        <li>
+                            <span class="glyphicon glyphicon-user"></span>
+                            {{$user_info->username}}
+                            <a href="/logout">
+                                Logout
+                            </a>
+                        </li>
+                    @else
+                        <li><a href="#" id="myBtn"><span class="glyphicon glyphicon-user"></span> Đăng
                             nhập</a></li>
+                    @endif
                 </ul>
             </div>
         </div>

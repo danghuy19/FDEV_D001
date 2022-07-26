@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,11 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('trang_chu');
-});
+Route::get('/', 'App\Http\Controllers\NormalPageController@index');
+
+Route::get('/logout', 'App\Http\Controllers\NormalPageController@logout');
 
 Route::get('/danh-sach-san-pham', function(){
+    $user_id = Session::get('user_id');
     $cau_chao = '<div><b>Xin chào các bạn</b></div>';
     $cau_chao_status = 'failed';
     $ds_san_pham = json_decode(file_get_contents(storage_path() . "/test_data.json"));
@@ -25,7 +27,8 @@ Route::get('/danh-sach-san-pham', function(){
     return view('danh_sach_san_pham')
         ->with('cau_chao_test', $cau_chao)
         ->with('cau_chao_status', $cau_chao_status)
-        ->with('ds_san_pham', $ds_san_pham);
+        ->with('ds_san_pham', $ds_san_pham)
+        ->with('user_id', $user_id);
     // return 'test info';
 });
 
@@ -49,6 +52,14 @@ Route::post('/save-register', [
     'as' => 'savecreatenewaccount',
     'uses' => 'App\Http\Controllers\UserController@store'
 ]);
+
+Route::get('/them-sach', 'App\Http\Controllers\SachController@createNewSach');
+
+Route::post('/save-sach', [
+    'as' => 'savecreatesach',
+    'uses' => 'App\Http\Controllers\SachController@store'
+]);
+
 
 
 //Route::controller('/test-route-controller', 'App\Http\Controllers\test_controller');
