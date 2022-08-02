@@ -48,9 +48,14 @@ Route::any('/call-by-all-method', function(){
 
 Route::get('/dang-ky', 'App\Http\Controllers\UserController@createNewAccount');
 
-Route::post('/save-register', [
+Route::post('/dang-ky', [
     'as' => 'savecreatenewaccount',
     'uses' => 'App\Http\Controllers\UserController@store'
+]);
+
+Route::post('/dang-nhap', [
+    'as' => 'loginaccount',
+    'uses' => 'App\Http\Controllers\UserController@login'
 ]);
 
 Route::get('/them-sach', 'App\Http\Controllers\SachController@createNewSach');

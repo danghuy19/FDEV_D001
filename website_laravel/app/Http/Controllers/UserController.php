@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Form;
 use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -68,6 +70,39 @@ class UserController extends Controller
             ->with('type_notice', 'success')
             ->with('url_redirect', '/');
         //return redirect('/', 302);
+    }
+
+    function login(Request $request){
+        $validator = Validator::make($request->all(), [
+            'ten_dang_nhap' => 'required|min:8',
+            'mat_khau' => 'required'
+        ]);
+
+        if ($validator->fails())
+        {
+            return redirect($_SERVER['HTTP_REFERER'])->withErrors($validator, 'loginErrors');
+        }
+
+        $data_string_user = file_get_contents(resource_path('data_temp/users.json'));
+        $list_user = json_decode($data_string_user);
+
+        $username = $request->input('ten_dang_nhap');
+        $password = $request->input('mat_khau');
+
+        $login_flag = 0;
+        for($i = 0; $i < count($list_user); $i++){
+            if($list_user[$i]->username == $username && $list_user[$i]->password == $password){
+                $login_flag = 1;
+                Session::put('user_info', $list_user[$i]);
+                return redirect('/');
+            }
+        }
+
+        if($login_flag === 0){
+            return redirect($_SERVER['HTTP_REFERER'])->withErrors(['Tài khoản hoặc mật khẩu không chính xác'], 'loginErrors');
+        }
+
+        return redirect($_SERVER['HTTP_REFERER'])->withErrors(['Server Internal Error'], 'loginErrors');
     }
 
     /**
