@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
 
 class SachController extends Controller
 {
@@ -15,7 +16,25 @@ class SachController extends Controller
     public function index()
     {
         //
-        return 'index function';
+        $user_id = Session::get('user_id');
+        // $cau_chao = '<div><b>Xin chào các bạn</b></div>';
+        // $cau_chao_status = 'failed';
+
+        $ds_san_pham = DB::table('bs_sach')
+            ->select('bs_sach.id', 'ten_sach', 'hinh', 'id_tac_gia', 'trong_luong', 'don_gia', 'gia_bia', 'ten_tac_gia')
+            ->join('bs_tac_gia', 'bs_sach.id_tac_gia', '=', 'bs_tac_gia.id')
+            ->where('don_gia','>=', 1000000)
+            ->where('trong_luong', '>=', 500)
+            ->orWhere('don_gia', '<=', 100000)
+            ->get();
+        //$ds_san_pham = json_decode(file_get_contents(storage_path() . "/test_data.json"));
+        //$ds_san_pham = json_decode($ds_san_pham);
+        return view('danh_sach_san_pham')
+            // ->with('cau_chao_test', $cau_chao)
+            // ->with('cau_chao_status', $cau_chao_status)
+            ->with('ds_san_pham', $ds_san_pham)
+            ->with('user_id', $user_id);
+        // return 'test info';
     }
 
     /**
@@ -111,5 +130,22 @@ class SachController extends Controller
     public function createNewSach(){
         Session::put('user_id', '100');
         return view('them_sach');
+    }
+
+    public function search_page(){
+        $user_id = Session::get('user_id');
+        $keyword = $_GET['keyword'];
+
+        $ds_sach_tim_kiem = DB::table('bs_sach')
+        ->select(DB::raw('bs_sach.*, ten_tac_gia'))
+        ->join('bs_tac_gia', 'bs_sach.id_tac_gia', '=', 'bs_tac_gia.id')
+        ->where('ten_sach', 'like', "%$keyword%")
+        ->orWhere('bs_sach.gioi_thieu', 'like', "%$keyword%")
+        ->get();
+
+        return view('danh_sach_san_pham')
+                ->with('keyword', $keyword)
+                ->with('ds_san_pham', $ds_sach_tim_kiem)
+                ->with('user_id', $user_id);
     }
 }

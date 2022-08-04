@@ -12,9 +12,10 @@ class NormalPageController extends Controller
     function index(){
         $user_info = Session::get('user_info');
 
+        $noi_bat = '1';
         $list_sach_noi_bat = DB::select('SELECT s.*, ten_tac_gia
         FROM bs_sach s JOIN bs_tac_gia tg ON s.id_tac_gia = tg.id
-        WHERE noi_bat = 1');
+        WHERE noi_bat = ?', [$noi_bat]);
 
         return view('trang_chu')
             ->with('user_info', $user_info)
