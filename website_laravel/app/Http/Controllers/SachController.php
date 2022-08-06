@@ -37,6 +37,27 @@ class SachController extends Controller
         // return 'test info';
     }
 
+    public function sach_theo_loai($id_loai_sach){
+        //echo $id_loai_sach;
+        $user_id = Session::get('user_id');
+
+        $ds_sach_theo_loai = DB::table('bs_sach')
+            ->join('bs_tac_gia', 'bs_sach.id_tac_gia','=','bs_tac_gia.id')
+            ->where('id_loai_sach','=', $id_loai_sach)
+            ->get();
+
+        //echo '<pre>',print_r($ds_sach_theo_loai),'</pre>';
+
+        
+
+        return view('danh_sach_san_pham')
+        // ->with('cau_chao_test', $cau_chao)
+        // ->with('cau_chao_status', $cau_chao_status)
+        //->with('ds_loai_sach', $list_loai_sach)
+        ->with('ds_san_pham', $ds_sach_theo_loai)
+        ->with('user_id', $user_id);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -84,10 +105,37 @@ class SachController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id_sach)
     {
         //
-        return 'show function';
+        //return 'show function';
+        //echo $id_sach;
+        $thong_tin_sach = DB::table('bs_sach')
+            ->select(DB::raw('bs_sach.*, ten_loai_sach, ten_tac_gia, ten_nha_xuat_ban'))
+            ->join('bs_tac_gia', 'bs_sach.id_tac_gia','=','bs_tac_gia.id')
+            ->join('bs_loai_sach', 'bs_sach.id_loai_sach','=','bs_loai_sach.id')
+            ->join('bs_nha_xuat_ban', 'bs_sach.id_nha_xuat_ban','=','bs_nha_xuat_ban.id')
+            ->where('bs_sach.id', $id_sach)
+            ->first();
+        
+        //echo '<pre>',print_r($thong_tin_sach),'</pre>';
+        $noi_dung_doc_thu = file_get_contents($thong_tin_sach->doc_thu);
+        //echo $noi_dung_doc_thu .'<br/>';
+        //echo $thong_tin_sach->doc_thu . '<br/>';
+        $mang_duong_dan_doc_thu = explode("/", $thong_tin_sach->doc_thu);
+        array_pop($mang_duong_dan_doc_thu);
+        array_pop($mang_duong_dan_doc_thu);
+
+        $duong_dan = '/'.implode("/", $mang_duong_dan_doc_thu);
+        //echo $duong_dan;
+
+        $noi_dung_doc_thu = str_replace("images/doc_thu/", $duong_dan."/", $noi_dung_doc_thu);
+        //$noi_dung_doc_thu = str_replace("../", $duong_dan."/", $noi_dung_doc_thu);
+
+        //echo $noi_dung_doc_thu;
+
+        return view('trang_chi_tiet_sach')->with('thong_tin_sach', $thong_tin_sach)
+            ->with('noi_dung_doc_thu', $noi_dung_doc_thu);
     }
 
     /**

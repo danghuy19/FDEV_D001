@@ -1,5 +1,7 @@
 <head>
     <title>Cửa hàng sách online</title>
+    <base href="/">
+    
     <!-- Latest compiled and minified CSS & JS -->
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/bootstrap_combie.css">
@@ -11,5 +13,6 @@
     <link rel="icon" href="images/logo.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
+    
     <script async="" type="text/javascript" src="https://app.purechat.com/VisitorWidget/WidgetScript"></script>
 </head>

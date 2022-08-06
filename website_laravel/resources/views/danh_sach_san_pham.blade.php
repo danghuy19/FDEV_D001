@@ -33,7 +33,7 @@
         
     </form> --}}
 
-    @include('modules.mod_search_form')
+    {{-- @include('modules.mod_search_form') --}}
 
     <div class="ds_san_pham">
         

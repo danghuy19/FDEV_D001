@@ -20,6 +20,11 @@ Route::get('/logout', 'App\Http\Controllers\NormalPageController@logout');
 
 Route::get('/danh-sach-san-pham', 'App\Http\Controllers\SachController@index');
 
+Route::get('/sach-theo-loai/{id_loai_sach}', 'App\Http\Controllers\SachController@sach_theo_loai');
+
+Route::get('/sach/{id_sach}', 'App\Http\Controllers\SachController@show');
+
+
 Route::get('/search', [
     'as' => 'search_page',
     'uses' => 'App\Http\Controllers\SachController@search_page'
