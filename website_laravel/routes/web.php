@@ -63,6 +63,8 @@ Route::post('/save-sach', [
     'uses' => 'App\Http\Controllers\SachController@store'
 ]);
 
+Route::get('/add-gio-hang/{id_sach}', "App\Http\Controllers\SachController@add_gio_hang");
+
 
 
 //Route::controller('/test-route-controller', 'App\Http\Controllers\test_controller');

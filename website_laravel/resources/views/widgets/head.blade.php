@@ -15,4 +15,5 @@
     <meta charset="utf-8">
     
     <script async="" type="text/javascript" src="https://app.purechat.com/VisitorWidget/WidgetScript"></script>
+    <script src="/js/main.js"></script>
 </head>

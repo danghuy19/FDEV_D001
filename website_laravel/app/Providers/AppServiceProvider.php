@@ -4,8 +4,10 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Session;
 
 use DB;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -44,6 +46,5 @@ class AppServiceProvider extends ServiceProvider
         }
 
         View::share('ds_loai_sach', $list_loai_sach);
-
     }
 }

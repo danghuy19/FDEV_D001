@@ -15,13 +15,15 @@
                                 <img src="images/sach/{{$sach_noi_bat->hinh}}">
                             </div>
                         </a>
-                        <div class="thong_tin_tom_tat_sach"><a href="/sach/{{$sach_noi_bat->id}}">
+                        <div class="thong_tin_tom_tat_sach">
+                            <a href="/sach/{{$sach_noi_bat->id}}">
                                 <div class="ten_sach">{{$sach_noi_bat->ten_sach}}</div>
                                 <div class="tac_gia">{{$sach_noi_bat->ten_tac_gia}}</div>
                                 <div class="don_gia_ban">{{$sach_noi_bat->don_gia}} ₫</div>
                                 <div class="don_gia_bia">{{$sach_noi_bat->gia_bia}} ₫ </div>
-                            </a><a href="them_vao_gio_hang.php?id_sach={{$sach_noi_bat->id}}">
-                                <div class="btn_mua_ngay">Mua Ngay</div>
+                            </a>
+                            <a href="them_vao_gio_hang.php?id_sach={{$sach_noi_bat->id}}">
+                                <div class="btn_mua_ngay" data-id-sach="{{$sach_noi_bat->id}}">Mua Ngay</div>
                             </a>
                         </div>
     

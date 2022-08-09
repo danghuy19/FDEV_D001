@@ -415,6 +415,27 @@ footer.footer-content .footer-trust img{
 	left: -72px;
 }
 
+
+.number_item_cart {
+    position: absolute;
+    background: #f00;
+    padding: 10px;
+    border-radius: 20px 20px 0 20px;
+    top: -28px;
+    left: -17px;
+    color: #fff;
+    font-weight: bold;
+	animation: button_gio_hang infinite 1s;
+}
+
+@keyframes button_gio_hang {
+	0% {transform: rotate(0deg)}
+	25% {transform: rotate(15deg)}
+	50% {transform: rotate(0deg)}
+	75% {transform: rotate(-15deg)}
+	100% {transform: rotate(0deg)}
+}
+
 @media only screen and (max-width: 800px) {
     .medal_bai_viet{
 		background: url(../images/medal-symbols-17047.png) no-repeat;

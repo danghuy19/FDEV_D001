@@ -196,4 +196,45 @@ class SachController extends Controller
                 ->with('ds_san_pham', $ds_sach_tim_kiem)
                 ->with('user_id', $user_id);
     }
+
+    public function add_gio_hang($id_sach){
+        //echo $id_sach;
+        
+        if(Session::has('gio_hang')){
+            $gio_hang = Session::get('gio_hang');
+
+            $flag = 0;
+            for($i = 0; $i < count($gio_hang); $i++){
+                if($gio_hang[$i]->id == $id_sach){
+                    $gio_hang[$i]->so_luong += 1;
+                    $flag = 1;
+                    break;
+                }
+            }
+
+            if($flag == 0){
+                $thong_tin_sach = DB::table('bs_sach')->where('id', $id_sach)->first();
+                $thong_tin_sach = json_decode(json_encode($thong_tin_sach));
+                $thong_tin_sach->so_luong = 1;
+                $gio_hang[] = $thong_tin_sach;
+            }
+        }
+        else{
+            $gio_hang = [];
+            $thong_tin_sach = DB::table('bs_sach')->where('id', $id_sach)->first();
+            $thong_tin_sach = json_decode(json_encode($thong_tin_sach));
+            $thong_tin_sach->so_luong = 1;
+            $gio_hang[] = $thong_tin_sach;
+        }
+
+        $tong_so_luong = 0;
+        for($i = 0; $i < count($gio_hang); $i++){
+            $tong_so_luong += $gio_hang[$i]->so_luong;
+        }
+
+        //echo '<pre>',print_r($gio_hang),'</pre>';
+        Session::put('gio_hang', $gio_hang);
+        Session::put('tong_so_luong', $tong_so_luong);
+        echo json_encode($gio_hang);
+    }
 }

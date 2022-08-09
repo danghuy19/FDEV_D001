@@ -76,7 +76,8 @@
                     <li><a href="lien_he.php">Liên hệ</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
+                    <li class="cart">
+                        <div class="number_item_cart">{{(session('tong_so_luong'))?:''}}</div>
                         <a href="trang_gio_hang.php">
                             <span class="glyphicon glyphicon-shopping-cart"></span>
                         </a>
