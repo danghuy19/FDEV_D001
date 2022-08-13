@@ -27,4 +27,20 @@ class NormalPageController extends Controller
 
         return redirect($request->server('HTTP_REFERER'), 302);
     }
+
+    function gio_hang(){
+        $gio_hang = [];
+        if(Session::has('gio_hang')){
+            $gio_hang = Session::get('gio_hang');
+        }
+
+        $tong_tien = 0;
+        foreach($gio_hang as $sp){
+            $tong_tien += $sp->so_luong * $sp->don_gia;
+        }
+
+        return view('trang_gio_hang')
+        ->with('gio_hang', $gio_hang)
+        ->with('tong_tien', $tong_tien);
+    }
 }

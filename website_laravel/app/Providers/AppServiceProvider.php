@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Session;
 
+use Illuminate\Support\Facades\Blade;
+use Money\Money;
+
 use DB;
 
 
@@ -46,5 +49,9 @@ class AppServiceProvider extends ServiceProvider
         }
 
         View::share('ds_loai_sach', $list_loai_sach);
+
+        Blade::directive('convert_money', function ($money) {
+            return "<?php echo number_format($money, 0, '', ','); ?>";
+        });
     }
 }

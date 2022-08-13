@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
@@ -236,5 +237,33 @@ class SachController extends Controller
         Session::put('gio_hang', $gio_hang);
         Session::put('tong_so_luong', $tong_so_luong);
         echo json_encode($gio_hang);
+    }
+
+    function update_gio_hang($id_sach){
+        try {
+            $so_luong = $_GET['so_luong'];
+
+            //echo $id_sach . ' - ' . $so_luong;
+            if(Session::has('gio_hang')){
+                $gio_hang = Session::get('gio_hang');
+
+                $tong_so_luong = 0;
+                foreach($gio_hang as $sp){
+                    if($sp->id == $id_sach){
+                        $sp->so_luong = $so_luong;
+                    }
+                    
+                    $tong_so_luong += $sp->so_luong;
+                }
+
+                Session::put('gio_hang', $gio_hang);
+                Session::put('tong_so_luong', $tong_so_luong);
+            }
+
+            echo '1';
+        }
+        catch(Exception $e){
+            die(0);
+        }
     }
 }
