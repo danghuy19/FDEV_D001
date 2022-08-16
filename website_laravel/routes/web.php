@@ -67,6 +67,10 @@ Route::get('/add-gio-hang/{id_sach}', "App\Http\Controllers\SachController@add_g
 
 Route::get('/update-gio-hang/{id_sach}', "App\Http\Controllers\SachController@update_gio_hang");
 
+Route::get('/xoa-item-gio-hang/{id_sach}', "App\Http\Controllers\SachController@xoa_item_gio_hang");
+
+Route::get('/xoa-gio-hang', "App\Http\Controllers\SachController@xoa_gio_hang");
+
 Route::get('/gio-hang', "App\Http\Controllers\NormalPageController@gio_hang");
 
 

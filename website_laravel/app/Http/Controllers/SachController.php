@@ -266,4 +266,40 @@ class SachController extends Controller
             die(0);
         }
     }
+
+
+    function xoa_item_gio_hang($id_sach){
+        if(Session::has('gio_hang')){
+            $gio_hang = Session::get('gio_hang');
+
+            for($i = 0; $i < count($gio_hang); $i++){
+                if($gio_hang[$i]->id == $id_sach){
+                    array_splice($gio_hang, $i, 1);
+                    break;
+                }
+            }
+
+
+            $tong_so_luong = 0;
+            foreach($gio_hang as $sp){
+                $tong_so_luong += $sp->so_luong;
+            }
+
+            Session::put('gio_hang', $gio_hang);
+            Session::put('tong_so_luong', $tong_so_luong);
+            //echo '<pre>',print_r($gio_hang),'</pre>';
+            //array_splice($array, 0, 1);
+            echo 1;
+        }
+    }
+
+    function xoa_gio_hang(){
+        if(Session::has('gio_hang')){
+            Session::forget('gio_hang');
+            Session::forget('tong_so_luong');
+        }
+
+        echo 1;
+    }
+
 }

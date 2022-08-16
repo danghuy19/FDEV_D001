@@ -77,8 +77,10 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="cart">
+                        @if(session()->has('tong_so_luong'))
                         <div class="number_item_cart">{{(session('tong_so_luong'))?:''}}</div>
-                        <a href="trang_gio_hang.php">
+                        @endif
+                        <a href="/gio-hang">
                             <span class="glyphicon glyphicon-shopping-cart"></span>
                         </a>
                     </li>
