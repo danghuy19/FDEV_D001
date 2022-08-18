@@ -50,6 +50,13 @@ class AppServiceProvider extends ServiceProvider
 
         View::share('ds_loai_sach', $list_loai_sach);
 
+        // $gio_hang = [];
+        // if(Session::has('gio_hang')){
+        //     $gio_hang = Session::get('gio_hang');
+        // }
+        // echo '<pre>',print_r($gio_hang),'</pre>';
+        // View::share('gio_hang', $gio_hang);
+
         Blade::directive('convert_money', function ($money) {
             return "<?php echo number_format($money, 0, '', ','); ?>";
         });

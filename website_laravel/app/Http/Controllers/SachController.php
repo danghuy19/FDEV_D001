@@ -200,6 +200,7 @@ class SachController extends Controller
 
     public function add_gio_hang($id_sach){
         //echo $id_sach;
+        $gio_hang = [];
         
         if(Session::has('gio_hang')){
             $gio_hang = Session::get('gio_hang');
@@ -221,7 +222,6 @@ class SachController extends Controller
             }
         }
         else{
-            $gio_hang = [];
             $thong_tin_sach = DB::table('bs_sach')->where('id', $id_sach)->first();
             $thong_tin_sach = json_decode(json_encode($thong_tin_sach));
             $thong_tin_sach->so_luong = 1;
@@ -229,13 +229,16 @@ class SachController extends Controller
         }
 
         $tong_so_luong = 0;
+        $tong_tien = 0;
         for($i = 0; $i < count($gio_hang); $i++){
             $tong_so_luong += $gio_hang[$i]->so_luong;
+            $tong_tien += $gio_hang[$i]->so_luong * $gio_hang[$i]->don_gia;
         }
 
         //echo '<pre>',print_r($gio_hang),'</pre>';
         Session::put('gio_hang', $gio_hang);
         Session::put('tong_so_luong', $tong_so_luong);
+        Session::put('tong_tien', $tong_so_luong);
         echo json_encode($gio_hang);
     }
 
@@ -247,6 +250,7 @@ class SachController extends Controller
             if(Session::has('gio_hang')){
                 $gio_hang = Session::get('gio_hang');
 
+                $tong_tien = 0;
                 $tong_so_luong = 0;
                 foreach($gio_hang as $sp){
                     if($sp->id == $id_sach){
@@ -254,10 +258,12 @@ class SachController extends Controller
                     }
                     
                     $tong_so_luong += $sp->so_luong;
+                    $tong_tien += $sp->so_luong * $sp->don_gia;
                 }
 
                 Session::put('gio_hang', $gio_hang);
                 Session::put('tong_so_luong', $tong_so_luong);
+                Session::put('tong_tien', $tong_tien);
             }
 
             echo '1';
@@ -281,12 +287,15 @@ class SachController extends Controller
 
 
             $tong_so_luong = 0;
+            $tong_tien = 0;
             foreach($gio_hang as $sp){
                 $tong_so_luong += $sp->so_luong;
+                $tong_tien += $sp->so_luong * $sp->don_gia;
             }
 
             Session::put('gio_hang', $gio_hang);
             Session::put('tong_so_luong', $tong_so_luong);
+            Session::put('tong_tien', $tong_tien);
             //echo '<pre>',print_r($gio_hang),'</pre>';
             //array_splice($array, 0, 1);
             echo 1;
@@ -297,6 +306,7 @@ class SachController extends Controller
         if(Session::has('gio_hang')){
             Session::forget('gio_hang');
             Session::forget('tong_so_luong');
+            Session::forget('tong_tien');
         }
 
         echo 1;

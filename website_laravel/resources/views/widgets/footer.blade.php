@@ -30,7 +30,7 @@
         </div>
     </div>
 </footer>
-<script type="text/javascript" data-cfasync="false">
+{{-- <script type="text/javascript" data-cfasync="false">
     window.purechatApi = {
         l: [],
         t: [],
@@ -55,4 +55,4 @@
             }
         };
     })();
-</script> <!-- END footer -->
+</script> <!-- END footer --> --}}
