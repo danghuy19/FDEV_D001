@@ -17,9 +17,17 @@ class NormalPageController extends Controller
         FROM bs_sach s JOIN bs_tac_gia tg ON s.id_tac_gia = tg.id
         WHERE noi_bat = ?', [$noi_bat]);
 
+        $list_sach_moi = DB::table('bs_sach')
+            ->select(DB::raw('bs_sach.*, ten_tac_gia'))
+            ->join('bs_tac_gia', 'bs_sach.id_tac_gia','=','bs_tac_gia.id')
+            ->orderBy('id', 'DESC')
+            ->limit(8)
+            ->get();
+
         return view('trang_chu')
             ->with('user_info', $user_info)
-            ->with('list_sach_noi_bat', $list_sach_noi_bat);
+            ->with('list_sach_noi_bat', $list_sach_noi_bat)
+            ->with('list_sach_moi', $list_sach_moi);
     }
 
     function logout(Request $request){
@@ -113,4 +121,31 @@ class NormalPageController extends Controller
         }
         
     }
+
+    function tin_tuc(){
+        $ds_tin_tuc = DB::table('bs_tin_tuc')->orderBy('id', 'DESC')->get();
+
+        return view('trang_tin_tuc')->with('ds_tin_tuc', $ds_tin_tuc);
+    }
+
+    function lien_he(){
+        return view('trang_lien_he');
+    }
+
+    function lien_he_store(Request $request){
+        //echo 123;
+        $email = $request->get('email');
+        $tieu_de = $request->get('tieu_de');
+        $noi_dung = $request->get('noi_dung');
+
+        DB::table('bs_lien_he')
+        ->insert([
+            'email' => $email,
+            'tieu_de' => $tieu_de,
+            'noi_dung' => $noi_dung
+        ]);
+
+        return redirect($request->server('HTTP_REFERER'), 302)->withErrors(['Bạn đã gửi thông tin liên hệ thành công!'], 'noticeSuccess');;
+    }
+
 }

@@ -238,7 +238,7 @@ class SachController extends Controller
         //echo '<pre>',print_r($gio_hang),'</pre>';
         Session::put('gio_hang', $gio_hang);
         Session::put('tong_so_luong', $tong_so_luong);
-        Session::put('tong_tien', $tong_so_luong);
+        Session::put('tong_tien', $tong_tien);
         echo json_encode($gio_hang);
     }
 

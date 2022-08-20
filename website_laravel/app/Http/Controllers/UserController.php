@@ -9,6 +9,8 @@ use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
+use DB;
+
 class UserController extends Controller
 {
     /**
@@ -74,7 +76,7 @@ class UserController extends Controller
 
     function login(Request $request){
         $validator = Validator::make($request->all(), [
-            'ten_dang_nhap' => 'required|min:8',
+            'ten_dang_nhap' => 'required',
             'mat_khau' => 'required'
         ]);
 
@@ -83,24 +85,42 @@ class UserController extends Controller
             return redirect($_SERVER['HTTP_REFERER'])->withErrors($validator, 'loginErrors');
         }
 
-        $data_string_user = file_get_contents(resource_path('data_temp/users.json'));
-        $list_user = json_decode($data_string_user);
+        
 
         $username = $request->input('ten_dang_nhap');
         $password = $request->input('mat_khau');
 
-        $login_flag = 0;
-        for($i = 0; $i < count($list_user); $i++){
-            if($list_user[$i]->username == $username && $list_user[$i]->password == $password){
-                $login_flag = 1;
-                Session::put('user_info', $list_user[$i]);
-                return redirect('/');
-            }
-        }
+        // $data_string_user = file_get_contents(resource_path('data_temp/users.json'));
+        // $list_user = json_decode($data_string_user);
 
-        if($login_flag === 0){
+        // $login_flag = 0;
+        // for($i = 0; $i < count($list_user); $i++){
+        //     if($list_user[$i]->username == $username && $list_user[$i]->password == $password){
+        //         $login_flag = 1;
+        //         Session::put('user_info', $list_user[$i]);
+        //         return redirect('/');
+        //     }
+        // }
+
+        // if($login_flag === 0){
+        //     return redirect($_SERVER['HTTP_REFERER'])->withErrors(['Tài khoản hoặc mật khẩu không chính xác'], 'loginErrors');
+        // }
+
+        $user = DB::table('bs_nguoi_dung')
+            ->where('tai_khoan', $username)
+            ->where('mat_khau', md5($password))
+            ->first();
+
+        if(isset($user->tai_khoan)){
+            $user->mat_khau = '';
+            Session::put('user_info', $user);
+            return redirect('/');
+        }
+        else {
             return redirect($_SERVER['HTTP_REFERER'])->withErrors(['Tài khoản hoặc mật khẩu không chính xác'], 'loginErrors');
         }
+
+        //echo '<pre>',print_r($user),'</pre>';
 
         return redirect($_SERVER['HTTP_REFERER'])->withErrors(['Server Internal Error'], 'loginErrors');
     }

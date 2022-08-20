@@ -24,7 +24,7 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'ten_dang_nhap' => 'required|min:8',
+            'ten_dang_nhap' => 'required',
             'mat_khau' => 'required'
         ];
     }

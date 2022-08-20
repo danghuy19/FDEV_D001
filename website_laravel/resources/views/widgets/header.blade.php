@@ -72,8 +72,8 @@
                             @endfor
                         </ul>
                     </li>
-                    <li><a href="tin_tuc_blog.php">Tin tức</a></li>
-                    <li><a href="lien_he.php">Liên hệ</a></li>
+                    <li><a href="/tin-tuc">Tin tức</a></li>
+                    <li><a href="/lien-he">Liên hệ</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="cart">
@@ -84,13 +84,27 @@
                             <span class="glyphicon glyphicon-shopping-cart"></span>
                         </a>
                     </li>
-                    @if(isset($user_info))
-                        <li>
-                            <span class="glyphicon glyphicon-user"></span>
-                            {{$user_info->username}}
-                            <a href="/logout">
-                                Logout
+                    @if(session()->has('user_info'))
+                        <li class="dropdown">
+
+                            <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+                                <span class="glyphicon glyphicon-user"></span>
+                                {{session('user_info')->tai_khoan}}
                             </a>
+                            
+                            <ul class="dropdown-menu hidden-xs hidden-sm">
+                                <li>
+                                    <a href="/admin">
+                                        Go to Admin dashboard
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/logout">
+                                        Logout
+                                    </a>
+                                </li>
+                            </ul>
+                            
                         </li>
                     @else
                         <li><a href="#" id="myBtn"><span class="glyphicon glyphicon-user"></span> Đăng
