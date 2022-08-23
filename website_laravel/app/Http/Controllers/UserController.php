@@ -114,7 +114,7 @@ class UserController extends Controller
         if(isset($user->tai_khoan)){
             $user->mat_khau = '';
             Session::put('user_info', $user);
-            return redirect('/');
+            return redirect($_SERVER['HTTP_REFERER']);
         }
         else {
             return redirect($_SERVER['HTTP_REFERER'])->withErrors(['Tài khoản hoặc mật khẩu không chính xác'], 'loginErrors');

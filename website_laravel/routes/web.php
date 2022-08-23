@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\EnsureAdminRole;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 
@@ -88,3 +89,9 @@ Route::get('/lien-he', 'App\Http\Controllers\NormalPageController@lien_he');
 Route::post('/lien-he', 'App\Http\Controllers\NormalPageController@lien_he_store');
 //Route::controller('/test-route-controller', 'App\Http\Controllers\test_controller');
 //remove from laravel higher than version 5
+
+
+/* Route admin */
+Route::get('/quantri', 'App\Http\Controllers\AdminController@index')->middleware(EnsureAdminRole::class);
+
+Route::get('/login-admin', 'App\Http\Controllers\AdminController@login_admin');
