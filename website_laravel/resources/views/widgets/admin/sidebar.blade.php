@@ -12,6 +12,27 @@
             <li class="sub-menu">
                 <a href="javascript:;" class="">
                     <i class="icon_document_alt"></i>
+                    <span>Quản lý sách</span>
+                    <span class="menu-arrow arrow_carrot-right"></span>
+                </a>
+                <ul class="sub">
+                    <li><a class="" href="/admin/ql-sach">Danh sách Sách</a></li>                          
+                    <li><a class="" href="/admin/ql-sach/create">Thêm sách mới</a></li>
+                </ul>
+            </li>    
+            <li class="sub-menu">
+                <a href="javascript:;" class="">
+                    <i class="icon_table"></i>
+                    <span>Tables</span>
+                    <span class="menu-arrow arrow_carrot-right"></span>
+                </a>
+                <ul class="sub">
+                    <li><a class="" href="basic_table.html">Basic Table</a></li>
+                </ul>
+            </li>  
+            {{-- <li class="sub-menu">
+                <a href="javascript:;" class="">
+                    <i class="icon_document_alt"></i>
                     <span>Forms</span>
                     <span class="menu-arrow arrow_carrot-right"></span>
                 </a>
@@ -47,16 +68,7 @@
                                    
             </li>
                        
-            <li class="sub-menu">
-                <a href="javascript:;" class="">
-                    <i class="icon_table"></i>
-                    <span>Tables</span>
-                    <span class="menu-arrow arrow_carrot-right"></span>
-                </a>
-                <ul class="sub">
-                    <li><a class="" href="basic_table.html">Basic Table</a></li>
-                </ul>
-            </li>
+            
             
             <li class="sub-menu">
                 <a href="javascript:;" class="">
@@ -70,7 +82,7 @@
                     <li><a class="" href="blank.html">Blank Page</a></li>
                     <li><a class="" href="404.html">404 Error</a></li>
                 </ul>
-            </li>
+            </li> --}}
             
         </ul>
         <!-- sidebar menu end-->

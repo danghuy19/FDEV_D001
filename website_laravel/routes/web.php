@@ -95,3 +95,7 @@ Route::post('/lien-he', 'App\Http\Controllers\NormalPageController@lien_he_store
 Route::get('/quantri', 'App\Http\Controllers\AdminController@index')->middleware(EnsureAdminRole::class);
 
 Route::get('/login-admin', 'App\Http\Controllers\AdminController@login_admin');
+
+/* Route process manage Sach */
+Route::get('/admin/ql-sach', 'App\Http\Controllers\SachAdminController@index')->middleware(EnsureAdminRole::class);
+Route::get('/admin/sach/delete/{id}', 'App\Http\Controllers\SachAdminController@destroy')->middleware(EnsureAdminRole::class);
