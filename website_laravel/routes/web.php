@@ -99,3 +99,6 @@ Route::get('/login-admin', 'App\Http\Controllers\AdminController@login_admin');
 /* Route process manage Sach */
 Route::get('/admin/ql-sach', 'App\Http\Controllers\SachAdminController@index')->middleware(EnsureAdminRole::class);
 Route::get('/admin/sach/delete/{id}', 'App\Http\Controllers\SachAdminController@destroy')->middleware(EnsureAdminRole::class);
+
+Route::get('/admin/ql-sach/create', 'App\Http\Controllers\SachAdminController@create')->middleware(EnsureAdminRole::class);
+Route::post('/admin/ql-sach/create', 'App\Http\Controllers\SachAdminController@store')->middleware(EnsureAdminRole::class);

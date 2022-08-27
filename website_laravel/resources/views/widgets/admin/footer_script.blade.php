@@ -35,6 +35,8 @@
 <script src="/js/sparklines.js"></script>	
 <script src="/js/charts.js"></script>
 <script src="/js/jquery.slimscroll.min.js"></script>
+<!-- ck editor -->
+<script type="text/javascript" src="assets/ckeditor/ckeditor.js"></script>
 <script>
 
   //knob
