@@ -58,7 +58,7 @@
                                     <td>{{($sach->noi_bat)?1:0}}</td>
                                     <td>
                                         <div class="btn-group">
-                                            <a class="btn btn-primary" href="/admin/sach/edit/{{$sach->id}}"><i class="icon_pencil"></i></a>
+                                            <a class="btn btn-primary" href="/admin/ql-sach/edit/{{$sach->id}}"><i class="icon_pencil"></i></a>
                                             <a class="btn btn-danger" onclick="return confirm_delete();" href="/admin/sach/delete/{{$sach->id}}"><i class="icon_trash"></i></a>
                                         </div>
                                     </td>

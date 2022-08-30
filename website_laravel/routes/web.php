@@ -102,3 +102,6 @@ Route::get('/admin/sach/delete/{id}', 'App\Http\Controllers\SachAdminController@
 
 Route::get('/admin/ql-sach/create', 'App\Http\Controllers\SachAdminController@create')->middleware(EnsureAdminRole::class);
 Route::post('/admin/ql-sach/create', 'App\Http\Controllers\SachAdminController@store')->middleware(EnsureAdminRole::class);
+
+Route::get('/admin/ql-sach/edit/{id}', 'App\Http\Controllers\SachAdminController@edit')->middleware(EnsureAdminRole::class);
+Route::post('/admin/ql-sach/edit/{id}', 'App\Http\Controllers\SachAdminController@update')->middleware(EnsureAdminRole::class);

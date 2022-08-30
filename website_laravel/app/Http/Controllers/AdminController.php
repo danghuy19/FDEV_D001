@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Session;
 
+use DB;
+
 class AdminController extends Controller
 {
     /**
@@ -17,8 +19,25 @@ class AdminController extends Controller
     {
         //
         //return 'Bạn đã vào được admin';
-        
-        return view('page_admin.trang_dashboard');
+        $ds_don_hang_thong_ke = DB::select('SELECT * FROM bs_don_hang WHERE YEAR(ngay_dat) = 2016');
+
+        $mang_thong_ke = [];
+        for($thang = 1; $thang <= 12; $thang++){
+            $tong_so_tien = 0;
+            foreach($ds_don_hang_thong_ke as $don_hang){
+                $month = date("m",strtotime($don_hang->ngay_dat));
+                if($month == $thang){
+                    $tong_so_tien += $don_hang->tong_tien;
+                }
+            }
+
+            $mang_thong_ke[] = $tong_so_tien;
+        }
+
+        //echo '<pre>',print_r($mang_thong_ke),'</pre>';
+        $chuoi_data = json_encode($mang_thong_ke);
+
+        return view('page_admin.trang_dashboard')->with('chuoi_data', $chuoi_data);
     }
 
     /**
