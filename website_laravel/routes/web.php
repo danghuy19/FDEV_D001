@@ -92,7 +92,8 @@ Route::post('/lien-he', 'App\Http\Controllers\NormalPageController@lien_he_store
 
 
 /* Route admin */
-Route::get('/quantri', 'App\Http\Controllers\AdminController@index')->middleware(EnsureAdminRole::class);
+Route::get('/admin', 'App\Http\Controllers\AdminController@index')->middleware(EnsureAdminRole::class);
+Route::get('/analytics-doanh-thu/{nam}', 'App\Http\Controllers\AdminController@thong_ke')->middleware(EnsureAdminRole::class);
 
 Route::get('/login-admin', 'App\Http\Controllers\AdminController@login_admin');
 
@@ -105,3 +106,7 @@ Route::post('/admin/ql-sach/create', 'App\Http\Controllers\SachAdminController@s
 
 Route::get('/admin/ql-sach/edit/{id}', 'App\Http\Controllers\SachAdminController@edit')->middleware(EnsureAdminRole::class);
 Route::post('/admin/ql-sach/edit/{id}', 'App\Http\Controllers\SachAdminController@update')->middleware(EnsureAdminRole::class);
+
+
+// generate data website url
+Route::get('/generate-data/{table}', 'App\Http\Controllers\GenerateDataController@index')->middleware(EnsureAdminRole::class);

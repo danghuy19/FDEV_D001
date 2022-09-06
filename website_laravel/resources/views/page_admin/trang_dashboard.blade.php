@@ -55,6 +55,13 @@
       <script src="https://code.highcharts.com/modules/export-data.js"></script>
       <script src="https://code.highcharts.com/modules/accessibility.js"></script>
       
+      <select name="" id="chon_nam">
+        <option value="2016">2016</option>
+        <option value="2017">2017</option>
+        <option value="2018">2018</option>
+        <option value="2019">2019</option>
+      </select>
+
       <figure class="highcharts-figure">
         <div id="test_chart"></div>
         <p class="highcharts-description">
@@ -65,64 +72,63 @@
       </figure>
 
       <script>
-        Highcharts.chart('test_chart', {
+        var data_chart  = [];
 
-        title: {
-          text: 'Doanh thu 2022'
-        },
-
-        subtitle: {
-          text: 'Source: <a href="https://irecusa.org/programs/solar-jobs-census/" target="_blank">IREC</a>'
-        },
-
-        yAxis: {
-          title: {
-            text: 'Number of Employees'
-          }
-        },
-
-        xAxis: {
-          accessibility: {
-            rangeDescription: 'Range: 2010 to 2020'
-          }
-        },
-
-        legend: {
-          layout: 'vertical',
-          align: 'right',
-          verticalAlign: 'middle'
-        },
-
-        plotOptions: {
-          series: {
-            label: {
-              connectorAllowed: false
+        var options = {
+            chart: {
+                renderTo: 'test_chart',
+                type: 'spline'
             },
-            pointStart: 1
-          }
-        },
+            series: [{}]
+        };
+        
+        // var url =  "http://url-to-your-remote-server/jsonp.php?callback=?";
+        // $.getJSON(url,  function(data) {
+        //     options.series[0].data = data;
+        //     var chart = new Highcharts.Chart(options);
+        // });
 
-        series: [{
-          name: 'Installation & Developers',
-          data: {{$chuoi_data}}
-        }],
+        $.get('/analytics-doanh-thu/2016')
+          .then((result) => {
+            //console.log(data);
+            data_chart = result.data
+            data_chart = JSON.parse(data_chart);
+            //console.log()
 
-        responsive: {
-          rules: [{
-            condition: {
-              maxWidth: 500
-            },
-            chartOptions: {
-              legend: {
-                layout: 'horizontal',
-                align: 'center',
-                verticalAlign: 'bottom'
+            options.series = [
+              {
+                  name: 'Doanh thu',
+                  data: data_chart
               }
-            }
-          }]
-        }
+            ];
+            var chart = new Highcharts.Chart(options);
+          })
+          // .catch((err) => {
+          //   console.log(err);
+          // })
 
-        });
+        $('#chon_nam').change((event) => {
+          //console.log(event.target.value);
+          $.get('/analytics-doanh-thu/' + event.target.value)
+          .then((result) => {
+            //console.log(data);
+            data_chart = result.data
+            data_chart = JSON.parse(data_chart);
+            //console.log()
+
+            options.series = [
+              {
+                  name: 'Doanh thu',
+                  data: data_chart
+              }
+            ];
+            var chart = new Highcharts.Chart(options);
+          })
+        })
+
+        
+
+        
       </script>
     </section>
 </section>

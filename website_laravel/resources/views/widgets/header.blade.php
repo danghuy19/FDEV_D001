@@ -95,7 +95,7 @@
                             <ul class="dropdown-menu hidden-xs hidden-sm">
                                 @if(session('user_info')->id_loai_user >= 5)
                                 <li>
-                                    <a href="/quantri">
+                                    <a href="/admin">
                                         Go to Admin dashboard
                                     </a>
                                 </li>

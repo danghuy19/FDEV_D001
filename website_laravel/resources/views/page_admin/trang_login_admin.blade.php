@@ -11,21 +11,21 @@
     <title>Login Page 2 | Creative - Bootstrap 3 Responsive Admin Template</title>
 
     <!-- Bootstrap CSS -->    
-    <link href="admin/css/bootstrap.min.css" rel="stylesheet">
+    <link href="admin_page/css/bootstrap.min.css" rel="stylesheet">
     <!-- bootstrap theme -->
-    <link href="admin/css/bootstrap-theme.css" rel="stylesheet">
+    <link href="admin_page/css/bootstrap-theme.css" rel="stylesheet">
     <!--external css-->
     <!-- font icon -->
-    <link href="admin/css/elegant-icons-style.css" rel="stylesheet" />
-    <link href="admin/css/font-awesome.css" rel="stylesheet" />
+    <link href="admin_page/css/elegant-icons-style.css" rel="stylesheet" />
+    <link href="admin_page/css/font-awesome.css" rel="stylesheet" />
     <!-- Custom styles -->
-    <link href="admin/css/style.css" rel="stylesheet">
-    <link href="admin/css/style-responsive.css" rel="stylesheet" />
+    <link href="admin_page/css/style.css" rel="stylesheet">
+    <link href="admin_page/css/style-responsive.css" rel="stylesheet" />
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
     <!--[if lt IE 9]>
-    <script src="admin/js/html5shiv.js"></script>
-    <script src="admin/js/respond.min.js"></script>
+    <script src="admin_page/js/html5shiv.js"></script>
+    <script src="admin_page/js/respond.min.js"></script>
     <![endif]-->
 </head>
 

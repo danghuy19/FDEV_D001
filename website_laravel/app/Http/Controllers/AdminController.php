@@ -40,6 +40,33 @@ class AdminController extends Controller
         return view('page_admin.trang_dashboard')->with('chuoi_data', $chuoi_data);
     }
 
+    function thong_ke($nam){
+        if($nam >= 2016 && $nam <= date('Y')){
+            $ds_don_hang_thong_ke = DB::select('SELECT * FROM bs_don_hang WHERE YEAR(ngay_dat) = ' . $nam);
+
+            $mang_thong_ke = [];
+            for($thang = 1; $thang <= 12; $thang++){
+                $tong_so_tien = 0;
+                foreach($ds_don_hang_thong_ke as $don_hang){
+                    $month = date("m",strtotime($don_hang->ngay_dat));
+                    if($month == $thang){
+                        $tong_so_tien += $don_hang->tong_tien;
+                    }
+                }
+
+                $mang_thong_ke[] = $tong_so_tien;
+            }
+
+            //echo '<pre>',print_r($mang_thong_ke),'</pre>';
+            $chuoi_data = json_encode($mang_thong_ke);
+
+            return response()->json(['status' => true, 'data' => $chuoi_data]);
+        }
+        else{
+            return response()->json(['status' => false, 'message' => 'làm gì đó?']);
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -111,7 +138,7 @@ class AdminController extends Controller
             $user_info = Session::get('user_info');
 
             if($user_info->id_loai_user >= 5){
-                return redirect('/quantri');
+                return redirect('/admin');
             }
             else {
                 return redirect('/');
