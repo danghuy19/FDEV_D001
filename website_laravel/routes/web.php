@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\EnsureAdminRole;
+use App\Http\Middleware\RuleSaveBook;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 
@@ -105,8 +106,9 @@ Route::get('/admin/ql-sach/create', 'App\Http\Controllers\SachAdminController@cr
 Route::post('/admin/ql-sach/create', 'App\Http\Controllers\SachAdminController@store')->middleware(EnsureAdminRole::class);
 
 Route::get('/admin/ql-sach/edit/{id}', 'App\Http\Controllers\SachAdminController@edit')->middleware(EnsureAdminRole::class);
-Route::post('/admin/ql-sach/edit/{id}', 'App\Http\Controllers\SachAdminController@update')->middleware(EnsureAdminRole::class);
+Route::post('/admin/ql-sach/edit/{id}', 'App\Http\Controllers\SachAdminController@update')->middleware([EnsureAdminRole::class, RuleSaveBook::class]);
 
+Route::get('/admin/ql-don-hang', 'App\Http\Controllers\DonHangAdminController@index')->middleware(EnsureAdminRole::class);
 
 // generate data website url
 Route::get('/generate-data/{table}', 'App\Http\Controllers\GenerateDataController@index')->middleware(EnsureAdminRole::class);

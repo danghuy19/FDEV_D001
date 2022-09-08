@@ -22,6 +22,17 @@
             </li>    
             <li class="sub-menu">
                 <a href="javascript:;" class="">
+                    <i class="icon_document_alt"></i>
+                    <span>QL đơn hàng</span>
+                    <span class="menu-arrow arrow_carrot-right"></span>
+                </a>
+                <ul class="sub">
+                    <li><a class="" href="/admin/ql-don-hang">Danh sách đơn hàng</a></li>                          
+                    <li><a class="" href="/admin/ql-don-hang/create">Thêm sách mới</a></li>
+                </ul>
+            </li>    
+            <li class="sub-menu">
+                <a href="javascript:;" class="">
                     <i class="icon_table"></i>
                     <span>Tables</span>
                     <span class="menu-arrow arrow_carrot-right"></span>
