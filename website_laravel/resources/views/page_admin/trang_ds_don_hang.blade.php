@@ -46,7 +46,9 @@
                                     <th><i class="icon_cogs"></i> Action</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="ds_don_hang"></tbody>
+
+                            {{-- <tbody>
                                 @foreach($ds_don_hang as $don_hang)
                                 <tr>
                                     <td>{{$don_hang->id}}</td>
@@ -61,37 +63,128 @@
                                 </tr>
                                 @endforeach
                                 
-                            </tbody>
+                            </tbody> --}}
                         </table>
                     </section>
                 </div>
             </div>
 
-            {{$so_trang}}
             <ul class="pagination">
+                <li class="page-item"><a class="page-link" onclick="process_load_page(0)">First</a></li>
+                <li class="page-item"><a class="page-link" onclick="process_load_page_previous()">Previous</a></li>
+            </ul>
+            {{-- <ul class="pagination">
                 <li class="page-item"><a class="page-link" href="/admin/ql-don-hang/?page=0">First</a></li>
                 <li class="page-item"><a class="page-link" href="/admin/ql-don-hang/?page={{($cur_page - 1 >= 0)?$cur_page - 1:0}}">Previous</a></li>
-                
                 @if($cur_page >= 5)
                 <li><a class="page-link">...</a></li>
                 @endif
+            </ul> --}}
 
-                @for($i = 0; $i < $so_trang; $i++)
+            <ul class="pagination list_page">
+                {{-- @for($i = 0; $i < $so_trang; $i++)
                     @if($i >= $cur_page - 5 && $i <= $cur_page + 5)
                         <li class="page-item"><a class="page-link" href="/admin/ql-don-hang/?page={{$i}}">{{$i+1}}</a></li>
                     @endif
-                @endfor
+                @endfor --}}
+            </ul>
 
+            {{-- <ul class="pagination">
                 @if($cur_page <= $so_trang - 6)
                 <li><a class="page-link">...</a></li>
                 @endif
-
                 <li class="page-item"><a class="page-link" href="/admin/ql-don-hang/?page={{($cur_page + 1 <= $so_trang - 1)?$cur_page + 1:$so_trang - 1}}">Next</a></li>
                 <li class="page-item"><a class="page-link" href="/admin/ql-don-hang/?page={{$so_trang - 1}}">Last</a></li>
+            </ul> --}}
+
+            <ul class="pagination">
+                <li class="page-item"><a class="page-link" onclick="process_load_page_next()">Next</a></li>
+                <li class="page-item"><a class="page-link" onclick="process_load_page({{$so_trang - 1}})">Last</a></li>
             </ul>
 
             <!-- page end-->
         </section>
+        <script>
+            // xác định số trang
+            var current_page = 0;
+            var so_trang = 0;
+
+            function load_ajax_page(cur_page){
+                $.get('/admin/ql-don-hang/pagination/' + cur_page)
+                    .then((data) => {
+                        //console.log(data);
+                        so_trang = data.so_trang;
+
+                        var html_list_page = '';
+
+                        for(var i = 0; i < so_trang; i++){
+                            if(i >= cur_page - 5 && i <= cur_page + 5)
+                            {
+                                html_list_page += `
+                                <li class="page-item"><a class="page-link" onclick="process_load_page(${i})">${i + 1}</a></li>
+                                `
+                            }
+                        }
+
+                        $('.list_page').html(html_list_page);
+
+                        if(data.ds_don_hang.length > 0){
+                            var html_ds_don_hang = '';
+
+                            for(var i = 0; i < data.ds_don_hang.length; i++){
+                                html_ds_don_hang += `
+                                <tr>
+                                    <td>${data.ds_don_hang[i].id}</td>
+                                    <td>${data.ds_don_hang[i].ho_ten_nguoi_nhan}</td>
+                                    <td>${data.ds_don_hang[i].tong_tien}</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <a class="btn btn-primary" href="/admin/ql-sach/edit/${data.ds_don_hang[i].id}"><i class="icon_pencil"></i></a>
+                                            <a class="btn btn-danger" onclick="return confirm_delete();" href="/admin/sach/delete/${data.ds_don_hang[i].id}"><i class="icon_trash"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                `;
+                            }
+
+                            //console.log(html_ds_don_hang);
+                            $('.ds_don_hang').html(html_ds_don_hang);
+                        }
+                    });
+            }
+
+            //lùi 1 trang
+            function process_load_page_previous(){
+                //console.log('lùi 1 trang');
+                if(current_page >= 1){
+                    current_page -= 1;
+                    console.log(current_page);
+                    load_ajax_page(current_page);
+                }
+            }
+
+            // tiến 1 trang
+            function process_load_page_next(){
+                if(current_page <= so_trang - 1){
+                    current_page += 1;
+                    console.log(current_page);
+                    load_ajax_page(current_page);
+                }
+            }
+
+            // mỗi khi thay đổi trang
+            function process_load_page(cur_page){
+                //console.log(cur_page);
+                current_page = cur_page;
+                load_ajax_page(current_page);
+            }
+
+            //chạy lần đầu tiên sau khi load trang
+            $(() => {
+                
+                load_ajax_page(current_page)
+            })
+        </script>
     </section>
 
     

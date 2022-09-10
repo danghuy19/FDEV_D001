@@ -32,6 +32,19 @@ class DonHangAdminController extends Controller
             ->with('cur_page', $cur_page);
     }
 
+    function pagination($current_page){
+        $index_lay_don_hang = $current_page * 10;
+        $ds_don_hang = DB::table('bs_don_hang')->orderBy('id', 'DESC')->skip($index_lay_don_hang)->limit(10)->get();
+        $tong_so_luong = DB::table('bs_don_hang')->select(DB::raw('COUNT(*) as tong_so_luong'))->first();
+
+        $so_trang = ceil($tong_so_luong->tong_so_luong / 10);
+
+        return response()->json([
+            'ds_don_hang' => $ds_don_hang,
+            'so_trang' => $so_trang
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

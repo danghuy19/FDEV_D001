@@ -109,6 +109,7 @@ Route::get('/admin/ql-sach/edit/{id}', 'App\Http\Controllers\SachAdminController
 Route::post('/admin/ql-sach/edit/{id}', 'App\Http\Controllers\SachAdminController@update')->middleware([EnsureAdminRole::class, RuleSaveBook::class]);
 
 Route::get('/admin/ql-don-hang', 'App\Http\Controllers\DonHangAdminController@index')->middleware(EnsureAdminRole::class);
+Route::get('/admin/ql-don-hang/pagination/{current_page}', 'App\Http\Controllers\DonHangAdminController@pagination');
 
 // generate data website url
 Route::get('/generate-data/{table}', 'App\Http\Controllers\GenerateDataController@index')->middleware(EnsureAdminRole::class);
