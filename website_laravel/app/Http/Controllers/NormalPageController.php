@@ -148,4 +148,49 @@ class NormalPageController extends Controller
         return redirect($request->server('HTTP_REFERER'), 302)->withErrors(['Bạn đã gửi thông tin liên hệ thành công!'], 'noticeSuccess');;
     }
 
+    function view_don_hang($email){
+        //echo $email;
+
+        $ds_don_hang = DB::table('bs_don_hang')
+                        ->where('email_nguoi_nhan', $email)
+                        ->orderBy('id', 'DESC')->limit(5)->get();
+
+        $ds_don_hang = json_decode(json_encode($ds_don_hang));
+
+        foreach($ds_don_hang as $key => $don_hang){
+            $ds_item = DB::table('bs_chi_tiet_don_hang')
+                ->join('bs_sach', 'bs_chi_tiet_don_hang.id_sach', '=', 'bs_sach.id')
+                ->where('id_don_hang', $don_hang->id)->get();
+            $ds_don_hang[$key]->ds_item = $ds_item;
+        }
+
+        return view('view_don_hang')->with('ds_don_hang', $ds_don_hang);
+    }
+
+    function api_don_hang($email){
+        $page = 0;
+        $number_item_on_page = 5;
+
+        if(isset($_GET['page'])){
+            $page = $_GET['page'];
+        }
+
+        $ds_don_hang = DB::table('bs_don_hang')
+                        ->where('email_nguoi_nhan', $email)
+                        ->orderBy('id', 'DESC')
+                        ->skip($page * $number_item_on_page)
+                        ->limit($number_item_on_page)->get();
+
+        $ds_don_hang = json_decode(json_encode($ds_don_hang));
+
+        foreach($ds_don_hang as $key => $don_hang){
+            $ds_item = DB::table('bs_chi_tiet_don_hang')
+                ->join('bs_sach', 'bs_chi_tiet_don_hang.id_sach', '=', 'bs_sach.id')
+                ->where('id_don_hang', $don_hang->id)->get();
+            $ds_don_hang[$key]->ds_item = $ds_item;
+        }
+
+        return response()->json($ds_don_hang);
+    }    
+
 }

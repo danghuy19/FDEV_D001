@@ -88,6 +88,10 @@ Route::get('/tin-tuc', 'App\Http\Controllers\NormalPageController@tin_tuc');
 Route::get('/lien-he', 'App\Http\Controllers\NormalPageController@lien_he');
 
 Route::post('/lien-he', 'App\Http\Controllers\NormalPageController@lien_he_store');
+
+Route::get('/view-don-hang/{email}', 'App\Http\Controllers\NormalPageController@view_don_hang');
+
+Route::get('/don-hang/{email}', 'App\Http\Controllers\NormalPageController@api_don_hang');
 //Route::controller('/test-route-controller', 'App\Http\Controllers\test_controller');
 //remove from laravel higher than version 5
 

@@ -117,6 +117,10 @@
 
                         var html_list_page = '';
 
+                        if(cur_page >= 5){
+                            html_list_page += `<li><a class="page-link">...</a></li>`;
+                        }
+
                         for(var i = 0; i < so_trang; i++){
                             if(i >= cur_page - 5 && i <= cur_page + 5)
                             {
@@ -124,6 +128,10 @@
                                 <li class="page-item"><a class="page-link" onclick="process_load_page(${i})">${i + 1}</a></li>
                                 `
                             }
+                        }
+
+                        if(cur_page <= so_trang - 6){
+                            html_list_page += `<li><a class="page-link">...</a></li>`;
                         }
 
                         $('.list_page').html(html_list_page);

@@ -449,3 +449,47 @@ footer.footer-content .footer-trust img{
 }
 
 /* END css trang blog list tin tuc */
+
+
+/* style don hang */
+.list_don_hang .item_don_hang .title_don_hang {
+	font-weight: bold;
+	font-size: 16px;
+
+}
+
+.list_don_hang .item_don_hang {
+	margin: 32px 0;
+	border-bottom: 1px solid #ccc;
+	padding: 0 0 32px;
+}
+
+.list_don_hang .item_don_hang .list_san_pham_don_hang .item_san_pham_don_hang {
+	display: flex;
+	margin: 24px 0;
+	border-radius: 4px;
+	box-shadow: 5px 5px 5px #ccc;
+	border: 1px solid #ccc;
+	padding: 10px;
+	transition: ease all 0.3s;
+}
+
+.list_don_hang .item_don_hang .list_san_pham_don_hang .item_san_pham_don_hang:hover {
+	transform: scale(1.05) translate(0, -2px);
+}
+
+.list_don_hang .item_don_hang .list_san_pham_don_hang .item_san_pham_don_hang > div {
+	margin: auto;
+}
+
+.list_don_hang .item_don_hang .list_san_pham_don_hang .item_san_pham_don_hang .image_item {
+	width: 120px;
+}
+
+.list_don_hang .item_don_hang .list_san_pham_don_hang .item_san_pham_don_hang .image_item img {
+	width: 100%;
+}
+
+.load_more_hidden {
+	height: 10px;
+}
