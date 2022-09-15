@@ -92,6 +92,8 @@ Route::post('/lien-he', 'App\Http\Controllers\NormalPageController@lien_he_store
 Route::get('/view-don-hang/{email}', 'App\Http\Controllers\NormalPageController@view_don_hang');
 
 Route::get('/don-hang/{email}', 'App\Http\Controllers\NormalPageController@api_don_hang');
+
+Route::get('/notice/{email}', 'App\Http\Controllers\DonHangAdminController@api_notice');
 //Route::controller('/test-route-controller', 'App\Http\Controllers\test_controller');
 //remove from laravel higher than version 5
 
@@ -114,6 +116,9 @@ Route::post('/admin/ql-sach/edit/{id}', 'App\Http\Controllers\SachAdminControlle
 
 Route::get('/admin/ql-don-hang', 'App\Http\Controllers\DonHangAdminController@index')->middleware(EnsureAdminRole::class);
 Route::get('/admin/ql-don-hang/pagination/{current_page}', 'App\Http\Controllers\DonHangAdminController@pagination');
+
+Route::get('/admin/ql-don-hang/edit/{id}', 'App\Http\Controllers\DonHangAdminController@edit')->middleware(EnsureAdminRole::class);
+Route::post('/admin/ql-don-hang/edit/{id}', 'App\Http\Controllers\DonHangAdminController@update')->middleware([EnsureAdminRole::class]);
 
 // generate data website url
 Route::get('/generate-data/{table}', 'App\Http\Controllers\GenerateDataController@index')->middleware(EnsureAdminRole::class);

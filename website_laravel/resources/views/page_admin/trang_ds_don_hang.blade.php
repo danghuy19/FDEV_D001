@@ -147,7 +147,7 @@
                                     <td>${data.ds_don_hang[i].tong_tien}</td>
                                     <td>
                                         <div class="btn-group">
-                                            <a class="btn btn-primary" href="/admin/ql-sach/edit/${data.ds_don_hang[i].id}"><i class="icon_pencil"></i></a>
+                                            <a class="btn btn-primary" href="/admin/ql-don-hang/edit/${data.ds_don_hang[i].id}"><i class="icon_pencil"></i></a>
                                             <a class="btn btn-danger" onclick="return confirm_delete();" href="/admin/sach/delete/${data.ds_don_hang[i].id}"><i class="icon_trash"></i></a>
                                         </div>
                                     </td>

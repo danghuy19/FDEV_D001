@@ -120,3 +120,23 @@
     @include('modules.mod_form_dang_nhap')
 
 </div>
+
+
+@if(session()->has('user_info'))
+    @if(session('user_info')->id_loai_user < 5)
+    <script>
+        $(() => {
+            setInterval(() => {
+                //console.log('call ajax');
+                $.get('/notice/' + '{{session('user_info')->email}}')
+                    .then((data) => {
+                        console.log(data);
+                        if(data.message){
+                            alert(data.message);
+                        }
+                    });
+            }, 2000);
+        })
+    </script>
+    @endif
+@endif
