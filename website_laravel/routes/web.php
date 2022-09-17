@@ -122,3 +122,6 @@ Route::post('/admin/ql-don-hang/edit/{id}', 'App\Http\Controllers\DonHangAdminCo
 
 // generate data website url
 Route::get('/generate-data/{table}', 'App\Http\Controllers\GenerateDataController@index')->middleware(EnsureAdminRole::class);
+
+
+Route::get('/api/save-product-crawl', 'App\Http\Controllers\GenerateDataController@save_crawl');

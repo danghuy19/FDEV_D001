@@ -8,6 +8,26 @@ use DB;
 class GenerateDataController extends Controller
 {
     //
+    function save_crawl(){
+        $name = $_GET['name'];
+        $price_now = $_GET['price_now'];
+        $price = $_GET['price']?$_GET['price']:0;
+        $hinh = $_GET['hinh'];
+        
+        DB::table('product_test')
+        ->insert([
+            'name' => $name,
+            'price_now' => $price_now,
+            'price' => $price,
+            'hinh' => $hinh,
+        ]);
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'save successfull'
+        ]);
+    }
+
     function index($table){
         ini_set('max_execution_time', 1200);
 

@@ -120,26 +120,44 @@ class DonHangAdminController extends Controller
 
         $trang_thai = $request->get('trang_thai');
 
-        DB::table('bs_don_hang')
-        ->where('id', $id)
-        ->update([
-            'trang_thai' => $trang_thai
-        ]);
+        DB::transaction(function () use ($array_trang_thai, $trang_thai, $thong_tin_don_hang_old, $id) { 
+            
+            DB::table('bs_don_hang')
+            ->where('id', $id)
+            ->update([
+                'trang_thai' => $trang_thai
+            ]);
 
-        DB::table('notice')
-        ->insert([
-            'id_don_hang' => $thong_tin_don_hang_old->id,
-            'trang_thai_old' => $thong_tin_don_hang_old->trang_thai,
-            'trang_thai_new' => $trang_thai,
-            'email' => $thong_tin_don_hang_old->email_nguoi_nhan
-        ]);
+            $check_notice = DB::table('notice')
+                ->where('id_don_hang', $thong_tin_don_hang_old->id)
+                ->first();
+
+            if($check_notice){
+                DB::table('notice')
+                ->where('id_don_hang', $thong_tin_don_hang_old->id)
+                ->update([
+                    'trang_thai_old' => $check_notice->trang_thai_old,
+                    'trang_thai_new' => $trang_thai
+                ]);
+            }
+            else{
+                DB::table('notice')
+                ->insert([
+                    'id_don_hang' => $thong_tin_don_hang_old->id,
+                    'trang_thai_old' => $thong_tin_don_hang_old->trang_thai,
+                    'trang_thai_new' => $trang_thai,
+                    'email' => $thong_tin_don_hang_old->email_nguoi_nhan
+                ]);
+            }
+            
+        });
 
         $thong_tin_don_hang = DB::table('bs_don_hang')->where('id', $id)->first();
 
         return view('page_admin.trang_cap_nhat_don_hang')
-                ->with('array_trang_thai', $array_trang_thai)
-                ->with('thong_tin_don_hang', $thong_tin_don_hang)
-                ->with('NoticeSuccess', 'Cập nhật đơn hàng thành công');
+                    ->with('array_trang_thai', $array_trang_thai)
+                    ->with('thong_tin_don_hang', $thong_tin_don_hang)
+                    ->with('NoticeSuccess', 'Cập nhật đơn hàng thành công');
     }
 
     /**
