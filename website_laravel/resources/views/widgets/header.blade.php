@@ -77,9 +77,9 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="cart">
-                        @if(session()->has('tong_so_luong'))
-                        <div class="number_item_cart">{{(session('tong_so_luong'))?:''}}</div>
-                        @endif
+                        
+                        <div class="number_item_cart @if(!session()->has('tong_so_luong')) hidden @endif">@if(session()->has('tong_so_luong')){{(session('tong_so_luong'))?:''}}@endif</div>
+                        
                         <a href="/gio-hang">
                             <span class="glyphicon glyphicon-shopping-cart"></span>
                         </a>

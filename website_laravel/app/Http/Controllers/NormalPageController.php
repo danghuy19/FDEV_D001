@@ -128,6 +128,18 @@ class NormalPageController extends Controller
         return view('trang_tin_tuc')->with('ds_tin_tuc', $ds_tin_tuc);
     }
 
+    function tin_tuc_language($language){
+        if($language != 'vn'){
+            $ds_tin_tuc = DB::table('bs_tin_tuc_' . $language)->orderBy('id', 'DESC')->get();
+        }
+        else{
+            $ds_tin_tuc = DB::table('bs_tin_tuc')->orderBy('id', 'DESC')->get();
+        }
+        
+
+        return view('trang_tin_tuc')->with('ds_tin_tuc', $ds_tin_tuc);
+    }
+
     function lien_he(){
         return view('trang_lien_he');
     }

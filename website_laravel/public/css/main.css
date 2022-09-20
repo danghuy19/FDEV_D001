@@ -493,3 +493,9 @@ footer.footer-content .footer-trust img{
 .load_more_hidden {
 	height: 10px;
 }
+
+
+.list_language img {
+	width: 30px;
+	margin: 20px;
+}

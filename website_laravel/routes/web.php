@@ -2,6 +2,8 @@
 
 use App\Http\Middleware\EnsureAdminRole;
 use App\Http\Middleware\RuleSaveBook;
+use App\Http\Middleware\LanguageRule;
+
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 
@@ -84,6 +86,7 @@ Route::post('/thanh-toan', [
 
 
 Route::get('/tin-tuc', 'App\Http\Controllers\NormalPageController@tin_tuc');
+Route::get('/tin-tuc/{language}', 'App\Http\Controllers\NormalPageController@tin_tuc_language')->middleware([LanguageRule::class]);
 
 Route::get('/lien-he', 'App\Http\Controllers\NormalPageController@lien_he');
 

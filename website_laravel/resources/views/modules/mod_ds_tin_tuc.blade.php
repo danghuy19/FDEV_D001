@@ -4,6 +4,19 @@
             <div class="title_module">
                 Tin tức
             </div>
+
+            <div class="list_language">
+                <a href="/tin-tuc/vn">
+                    <img src="/images/flag/vn.png" alt="">
+                </a>
+                <a href="/tin-tuc/en">
+                    <img src="/images/flag/en.png" alt="">
+                </a>
+                <a href="/tin-tuc/de">
+                    <img src="/images/flag/de.png" alt="">
+                </a>
+            </div>
+
             @foreach($ds_tin_tuc as $key => $tin_tuc)
                 @if($key % 2 == 0)
                 <div class="row">
