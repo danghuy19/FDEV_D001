@@ -128,3 +128,6 @@ Route::get('/generate-data/{table}', 'App\Http\Controllers\GenerateDataControlle
 
 
 Route::get('/api/save-product-crawl', 'App\Http\Controllers\GenerateDataController@save_crawl');
+
+
+Route::post('/message', 'App\Http\Controllers\ChatController@save_message');

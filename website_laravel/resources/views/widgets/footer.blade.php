@@ -30,6 +30,8 @@
         </div>
     </div>
 </footer>
+
+@include('widgets.chat')
 {{-- <script type="text/javascript" data-cfasync="false">
     window.purechatApi = {
         l: [],
@@ -56,3 +58,4 @@
         };
     })();
 </script> <!-- END footer --> --}}
+

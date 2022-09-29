@@ -14,6 +14,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     
+    <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+    
     {{-- <script async="" type="text/javascript" src="https://app.purechat.com/VisitorWidget/WidgetScript"></script> --}}
     <script src="/js/main.js"></script>
 </head>
