@@ -15,16 +15,24 @@
 <script>
     $(() => {
         $('.button_chat').click(() => {
-            //console.log(123);
-            var token = $('input[name="_token"]').val();
-            var data_mess = $('#message_chat').val();
-            $.post('/message', {
-                message: data_mess,
-                _token: token
-            })
-                .then((response) => {
-                    console.log(response);
-                });
+            if($('#message_chat').val()){
+                //console.log(123);
+                var token = $('input[name="_token"]').val();
+                var data_mess = {
+                    message: $('#message_chat').val(),
+                    id_room: sessionid
+                };
+
+                var data_string = JSON.stringify(data_mess);
+                $.post('/message', {
+                    message: data_string,
+                    _token: token
+                })
+                    .then((response) => {
+                        console.log(response);
+                    });
+            }
+            
         })
     })
 </script>

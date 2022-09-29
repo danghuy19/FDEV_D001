@@ -18,4 +18,8 @@
     
     {{-- <script async="" type="text/javascript" src="https://app.purechat.com/VisitorWidget/WidgetScript"></script> --}}
     <script src="/js/main.js"></script>
+    <script>
+        var sessionid = "@if(session()->has('id_anonymous')){{(session('id_anonymous')[0])?session('id_anonymous')[0]:''}}@endif";
+    </script>
+    
 </head>

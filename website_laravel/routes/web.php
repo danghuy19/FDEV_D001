@@ -123,6 +123,8 @@ Route::get('/admin/ql-don-hang/pagination/{current_page}', 'App\Http\Controllers
 Route::get('/admin/ql-don-hang/edit/{id}', 'App\Http\Controllers\DonHangAdminController@edit')->middleware(EnsureAdminRole::class);
 Route::post('/admin/ql-don-hang/edit/{id}', 'App\Http\Controllers\DonHangAdminController@update')->middleware([EnsureAdminRole::class]);
 
+Route::get('/admin/ql-chat-support', 'App\Http\Controllers\ChatController@index')->middleware([EnsureAdminRole::class]);
+
 // generate data website url
 Route::get('/generate-data/{table}', 'App\Http\Controllers\GenerateDataController@index')->middleware(EnsureAdminRole::class);
 

@@ -31,15 +31,18 @@ var pusher = new Pusher('e836754de27fb45a4173', {
   cluster: 'mt1'
 });
 
-var channel = pusher.subscribe('my-channel');
-channel.bind('my-event', function(data) {
+var channel = pusher.subscribe('chat_support');
+channel.bind('send_message', function(data) {
   //alert(JSON.stringify(data));
-  
-  var html_item_chat = `
-    <div class="item_chat">
-    ${data.message}
-    </div>
-  `;
+  var data_message = JSON.parse(data.message);
 
-  $('.list_message_chat').append(html_item_chat);
+  if(data_message.id_room == sessionid){
+    var html_item_chat = `
+      <div class="item_chat">
+      ${data_message.message}
+      </div>
+    `;
+
+    $('.list_message_chat').append(html_item_chat);
+  }
 });

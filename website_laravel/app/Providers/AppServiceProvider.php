@@ -50,6 +50,16 @@ class AppServiceProvider extends ServiceProvider
 
         View::share('ds_loai_sach', $list_loai_sach);
 
+        if(Session::has('id_anonymous')){
+
+        }
+        else{
+            $uniqid = uniqid();
+            
+            Session::push('id_anonymous', $uniqid);
+            //echo Session::get('id_anonymous')[0];
+        }
+
         // $gio_hang = [];
         // if(Session::has('gio_hang')){
         //     $gio_hang = Session::get('gio_hang');

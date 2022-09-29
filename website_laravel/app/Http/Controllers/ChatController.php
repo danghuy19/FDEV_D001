@@ -25,6 +25,10 @@ class ChatController extends Controller
         );
         
         $data['message'] = $message;
-        $pusher->trigger('my-channel', 'my-event', $data);
+        $pusher->trigger('chat_support', 'send_message', $data);
+    }
+
+    public function index(){
+        return view('page_admin.trang_chat_support');
     }
 }

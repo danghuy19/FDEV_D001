@@ -30,6 +30,13 @@
                     <li><a class="" href="/admin/ql-don-hang">Danh sách đơn hàng</a></li>                          
                     <li><a class="" href="/admin/ql-don-hang/create">Thêm sách mới</a></li>
                 </ul>
+            </li>   
+            <li class="sub-menu">
+                <a href="/admin/ql-chat-support" class="">
+                    <i class="icon_document_alt"></i>
+                    <span>Hệ thống chat support</span>
+                    <span class="menu-arrow arrow_carrot-right"></span>
+                </a>
             </li>    
             <li class="sub-menu">
                 <a href="javascript:;" class="">

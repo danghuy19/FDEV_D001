@@ -43,4 +43,6 @@
     <script src="/js/jquery.js"></script>
     <script src="/js/jquery-ui-1.10.4.min.js"></script>
     <script src="/js/jquery-1.8.3.min.js"></script>
+
+    <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
   </head>
