@@ -4938,3 +4938,32 @@ span.customSelect.changed {
 .customSelectInner {
     background:url(../img/customSelect-arrow.gif) no-repeat center right;
 }
+
+
+.item_chat {
+	background: #ccc;
+	width: 80%;
+	padding: 8px;
+	margin: 8px 0;
+	border-radius: 10px 10px 10px 0;
+}
+
+.item_chat.your_self {
+	background: #286090;
+	color: #fff;
+	max-width: 80%;
+	margin: 8px 0 8px auto;
+	padding: 8px;
+	border-radius: 10px 10px 0 10px;
+}
+
+.container_item_room_chat {
+    border: 1px solid #ccc;
+    padding: 8px;
+}
+
+.title_room {
+    font-weight: 600;
+    background: #cff;
+    padding: 8px;
+}

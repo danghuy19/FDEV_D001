@@ -499,3 +499,77 @@ footer.footer-content .footer-trust img{
 	width: 30px;
 	margin: 20px;
 }
+
+.container_chat {
+	position: fixed;
+	right: 20px;
+	bottom: -332px;
+	min-width: 250px;
+	background: #fff;
+	border: 1px solid #ccc;
+	border-bottom: none;
+	border-radius: 5px 5px 0 0;
+	transition: ease all 0.5s;
+}
+
+.container_chat.active {
+	bottom: 0;
+}
+
+.container_chat .title_form_chat {
+	padding: 10px;
+	font-weight: 600;
+	background: #cff;
+	display: flex;
+	cursor: pointer;
+}
+
+.container_chat .title_form_chat .title {
+	margin: auto auto auto 0;
+}
+
+.container_message {
+	height: 250px;
+	overflow: auto;
+	border-bottom: 1px solid #ccc;
+	padding: 10px;
+	margin: 0 0 10px 0;
+}
+
+.btn_close {
+	margin: auto 0 auto auto;
+}
+
+.include_input_chat input {
+	width: 100%;
+	border: none;
+	box-shadow: none;
+}
+
+.include_input_chat input:focus, .include_input_chat input:active {
+	border: none;
+	box-shadow: none;
+	outline: none;
+}
+
+.button_chat {
+	width: 100%;
+	margin: 12px 0 0 0;
+}
+
+.item_chat {
+	background: #ccc;
+	width: 80%;
+	padding: 8px;
+	margin: 8px 0;
+	border-radius: 10px 10px 10px 0;
+}
+
+.item_chat.your_self {
+	background: #286090;
+	color: #fff;
+	max-width: 80%;
+	margin: 8px 0 8px auto;
+	padding: 8px;
+	border-radius: 10px 10px 0 10px;
+}

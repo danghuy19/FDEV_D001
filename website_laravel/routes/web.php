@@ -133,3 +133,5 @@ Route::get('/api/save-product-crawl', 'App\Http\Controllers\GenerateDataControll
 
 
 Route::post('/message', 'App\Http\Controllers\ChatController@save_message');
+
+Route::post('/message-turn-off', 'App\Http\Controllers\ChatController@message_turn_off');
