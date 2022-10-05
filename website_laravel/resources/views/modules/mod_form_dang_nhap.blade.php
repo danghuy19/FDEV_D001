@@ -45,13 +45,14 @@
 
 <script>
     $(document).ready(function() {
-        $("#myBtn").click(function() {
+        $(".myBtnLogin").click(function(e) {
+            e.preventDefault();
             $("#myModal").modal();
         });
 
         @if(!$errors->loginErrors->isEmpty())
             setTimeout(() => {
-                $("#myBtn").click();
+                $(".myBtnLogin").click();
             }, 500);
         @endif
     });

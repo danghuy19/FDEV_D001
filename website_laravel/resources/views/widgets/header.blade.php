@@ -109,7 +109,7 @@
                             
                         </li>
                     @else
-                        <li><a href="#" id="myBtn"><span class="glyphicon glyphicon-user"></span> Đăng
+                        <li><a href="#" id="myBtn"  class="myBtnLogin"><span class="glyphicon glyphicon-user"></span> Đăng
                             nhập</a></li>
                     @endif
                 </ul>

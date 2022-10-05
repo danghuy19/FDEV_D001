@@ -119,8 +119,21 @@ class SachController extends Controller
             ->where('bs_sach.id', $id_sach)
             ->first();
         
+        $list_binh_luan = DB::table('bs_binh_luan')
+        ->select(DB::raw('bs_binh_luan.*, ho_ten, avatar'))
+        ->join('bs_nguoi_dung', 'bs_binh_luan.id_nguoi_dung', '=', 'bs_nguoi_dung.id')
+        ->where('id_sach', $id_sach)
+        ->get();
+
         //echo '<pre>',print_r($thong_tin_sach),'</pre>';
-        $noi_dung_doc_thu = file_get_contents($thong_tin_sach->doc_thu);
+        //echo '<pre>',print_r($_SERVER),'</pre>';
+        $share_url = $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
+
+        $noi_dung_doc_thu = '';
+        if($thong_tin_sach->doc_thu){
+            $noi_dung_doc_thu = file_get_contents($thong_tin_sach->doc_thu);
+        }
+        
         //echo $noi_dung_doc_thu .'<br/>';
         //echo $thong_tin_sach->doc_thu . '<br/>';
         $mang_duong_dan_doc_thu = explode("/", $thong_tin_sach->doc_thu);
@@ -136,7 +149,9 @@ class SachController extends Controller
         //echo $noi_dung_doc_thu;
 
         return view('trang_chi_tiet_sach')->with('thong_tin_sach', $thong_tin_sach)
-            ->with('noi_dung_doc_thu', $noi_dung_doc_thu);
+            ->with('noi_dung_doc_thu', $noi_dung_doc_thu)
+            ->with('share_url', $share_url)
+            ->with('list_binh_luan', $list_binh_luan);
     }
 
     /**
