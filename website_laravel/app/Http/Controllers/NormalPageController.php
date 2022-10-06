@@ -24,10 +24,23 @@ class NormalPageController extends Controller
             ->limit(8)
             ->get();
 
+        $list_sach_ban_chay = DB::table('bs_sach')
+        ->select(DB::raw('bs_sach.*, SUM(so_luong) as tong_so_luong, ten_tac_gia'))
+        ->join('bs_chi_tiet_don_hang', 'bs_sach.id', '=', 'bs_chi_tiet_don_hang.id_sach')
+        ->join('bs_tac_gia', 'bs_sach.id_tac_gia','=','bs_tac_gia.id')
+        ->groupBy('bs_sach.id')
+        ->orderBy('tong_so_luong', 'DESC')
+        ->limit(8)
+        ->get();
+
+        //echo '<pre>',print_r($list_sach_ban_chay),'</pre>';
+
+
         return view('trang_chu')
             ->with('user_info', $user_info)
             ->with('list_sach_noi_bat', $list_sach_noi_bat)
-            ->with('list_sach_moi', $list_sach_moi);
+            ->with('list_sach_moi', $list_sach_moi)
+            ->with('list_sach_ban_chay', $list_sach_ban_chay);
     }
 
     function logout(Request $request){
@@ -123,21 +136,62 @@ class NormalPageController extends Controller
     }
 
     function tin_tuc(){
-        $ds_tin_tuc = DB::table('bs_tin_tuc')->orderBy('id', 'DESC')->get();
+        $cur_page = 0;
+        $so_luong_item_tren_trang = 10;
+        $so_trang = 0;
+        if(isset($_GET['page'])){
+            $cur_page = $_GET['page'];
+        }
 
-        return view('trang_tin_tuc')->with('ds_tin_tuc', $ds_tin_tuc);
+        $ds_tin_tuc = DB::table('bs_tin_tuc')
+        ->skip($cur_page * $so_luong_item_tren_trang)
+        ->limit($so_luong_item_tren_trang)
+        ->orderBy('id', 'DESC')
+        ->get();
+
+        $so_luong_tin_tuc = DB::table('bs_tin_tuc')->select(DB::raw('count(*) as so_luong_tin'))->first();
+
+        $url_self = str_replace('/index.php', '', $_SERVER['PHP_SELF']);
+        
+        //echo '<pre>',print_r($so_luong_tin_tuc),'</pre>';
+        $so_trang = ceil($so_luong_tin_tuc->so_luong_tin / $so_luong_item_tren_trang);
+        return view('trang_tin_tuc')->with('ds_tin_tuc', $ds_tin_tuc)
+            ->with('cur_page', $cur_page)
+            ->with('so_trang', $so_trang)
+            ->with('url_self', $url_self);
     }
 
     function tin_tuc_language($language){
+        $cur_page = 0;
+        $so_luong_item_tren_trang = 10;
+        $so_trang = 0;
+        if(isset($_GET['page'])){
+            $cur_page = $_GET['page'];
+        }
+
+        $so_luong_tin_tuc = DB::table('bs_tin_tuc')->select(DB::raw('count(*) as so_luong_tin'))->first();
+
+        //echo '<pre>',print_r($so_luong_tin_tuc),'</pre>';
+        $so_trang = ceil($so_luong_tin_tuc->so_luong_tin / $so_luong_item_tren_trang);
+
+
         if($language != 'vn'){
-            $ds_tin_tuc = DB::table('bs_tin_tuc_' . $language)->orderBy('id', 'DESC')->get();
+            $ds_tin_tuc = DB::table('bs_tin_tuc_' . $language)
+            ->skip($cur_page * $so_luong_item_tren_trang)
+            ->limit($so_luong_item_tren_trang)
+            ->orderBy('id', 'DESC')->get();
         }
         else{
             $ds_tin_tuc = DB::table('bs_tin_tuc')->orderBy('id', 'DESC')->get();
         }
         
+        $url_self = str_replace('/index.php', '', $_SERVER['PHP_SELF']);
 
-        return view('trang_tin_tuc')->with('ds_tin_tuc', $ds_tin_tuc);
+        return view('trang_tin_tuc')->with('ds_tin_tuc', $ds_tin_tuc)
+            ->with('cur_page', $cur_page)
+            ->with('so_trang', $so_trang)
+            ->with('url_self', $url_self);
+        //echo '<pre>',print_r($_SERVER),'</pre>';
     }
 
     function lien_he(){

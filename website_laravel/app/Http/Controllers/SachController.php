@@ -43,6 +43,7 @@ class SachController extends Controller
         $user_id = Session::get('user_id');
 
         $ds_sach_theo_loai = DB::table('bs_sach')
+            ->select(DB::raw('bs_sach.*, ten_tac_gia'))
             ->join('bs_tac_gia', 'bs_sach.id_tac_gia','=','bs_tac_gia.id')
             ->where('id_loai_sach','=', $id_loai_sach)
             ->get();

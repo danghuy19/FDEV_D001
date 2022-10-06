@@ -40,14 +40,24 @@
             @endforeach
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <ul class="pagination">
-                    <li class="active"><a class="number"><b>1</b></a> </li>
-                    <li><a class="number" href="/web_ban_sach_php_thuan/tin_tuc_blog.php?page=2" title="Trang 2">2</a>
+                    <li><a class="number" href="{{$url_self}}?page=0"
+                        title="Trang đầu">&lt;&lt;</a></li>
+                    <li><a class="number" href="{{$url_self}}?page={{($cur_page > 0)?$cur_page - 1:0}}"
+                        title="Trang trước">&lt;</a></li>
+                    
+                    
+                    @for($i = 0; $i < $so_trang; $i++)
+                    <li class="{{($i == $cur_page)?'active':''}}">
+                        <a class="number" href="{{$url_self}}?page={{$i}}" title="Trang {{$i + 1}}">
+                        {{$i + 1}}
+                        </a>
                     </li>
-                    <li><a class="number" href="/web_ban_sach_php_thuan/tin_tuc_blog.php?page=3" title="Trang 3">3</a>
-                    </li>
-                    <li><a class="number" href="/web_ban_sach_php_thuan/tin_tuc_blog.php?page=2"
+                    @endfor
+                    
+
+                    <li><a class="number" href="{{$url_self}}?page={{($cur_page < $so_trang - 1)?$cur_page + 1:$so_trang - 1}}"
                             title="Dến trang sau">&gt;</a></li>
-                    <li><a class="number" href="/web_ban_sach_php_thuan/tin_tuc_blog.php?page=3"
+                    <li><a class="number" href="{{$url_self}}?page={{$so_trang - 1}}"
                             title="Trang cuối">&gt;&gt;</a></li>
                 </ul>
             </div>

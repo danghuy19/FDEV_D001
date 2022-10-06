@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/demo_checkout32.iml" filepath="$PROJECT_DIR$/.idea/demo_checkout32.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../nganluong_web/.idea/nganluong_web.iml" filepath="$PROJECT_DIR$/../nganluong_web/.idea/nganluong_web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../paygate_v2_checkout/.idea/paygate_v2_checkout.iml" filepath="$PROJECT_DIR$/../paygate_v2_checkout/.idea/paygate_v2_checkout.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../test_checkout/.idea/test_checkout.iml" filepath="$PROJECT_DIR$/../test_checkout/.idea/test_checkout.iml" />
+    </modules>
+  </component>
+</project>

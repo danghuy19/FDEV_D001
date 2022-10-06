@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="3683bf84-0c91-41cc-b292-9b34e05144ee" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../test_checkout/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutNDS/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutNDS/config.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutNDS/deposit.php" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutNDS/deposit.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutNDS/include/lib/nusoap.php" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutNDS/include/lib/nusoap.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutNDS/include/nganluong.apps.mcflow.js" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutNDS/include/nganluong.apps.mcflow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutNDS/include/nganluong.microcheckout.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutNDS/include/nganluong.microcheckout.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutNDS/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutNDS/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutNDS/logs/20180331.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutNDS/logs/20180331.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutNDS/payment_cancel.php" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutNDS/payment_cancel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutNDS/payment_success.php" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutNDS/payment_success.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutNDS/popout.js" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutNDS/popout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutNDS/tinybox.js" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutNDS/tinybox.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/config.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/images/0.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/images/0.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/images/1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/images/1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/images/2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/images/2.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/images/3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/images/3.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/images/4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/images/4.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/images/close.png" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/images/close.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/images/preload.gif" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/images/preload.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/images/rhino.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/images/rhino.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/include/lib/changelog" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/include/lib/changelog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/include/lib/class.nusoap_base.php" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/include/lib/class.nusoap_base.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/include/lib/class.soap_fault.php" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/include/lib/class.soap_fault.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/include/lib/class.soap_parser.php" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/include/lib/class.soap_parser.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/include/lib/class.soap_server.php" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/include/lib/class.soap_server.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/include/lib/class.soap_transport_http.php" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/include/lib/class.soap_transport_http.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/include/lib/class.soap_val.php" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/include/lib/class.soap_val.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/include/lib/class.soapclient.php" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/include/lib/class.soapclient.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/include/lib/class.wsdl.php" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/include/lib/class.wsdl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/include/lib/class.wsdlcache.php" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/include/lib/class.wsdlcache.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/include/lib/class.xmlschema.php" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/include/lib/class.xmlschema.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/include/lib/nusoap.php" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/include/lib/nusoap.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/include/lib/nusoapmime.php" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/include/lib/nusoapmime.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/include/nganluong.apps.mcflow.js" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/include/nganluong.apps.mcflow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/include/nganluong.microcheckout.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/include/nganluong.microcheckout.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/payment_success.php" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/payment_success.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/popout.nganluong.js" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/popout.nganluong.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutNDS_MOL/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutmobile/cancel.php" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutmobile/cancel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutmobile/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutmobile/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutmobile/notify.php" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutmobile/notify.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutmobile/success.php" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutmobile/success.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutv2.0/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutv2.0/config.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutv2.0/error.php" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutv2.0/error.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutv2.0/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutv2.0/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutv2.0/lib/nganluong.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutv2.0/lib/nganluong.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutv2.0/lib/nusoap.php" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutv2.0/lib/nusoap.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutv2.0/lib/nusoap_1.php" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutv2.0/lib/nusoap_1.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutv2.0/logs/20180331.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutv2.0/logs/20180331.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutv2.0/success.php" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutv2.0/success.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutv2.0/update_order.php" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutv2.0/update_order.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutv3.1/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutv3.1/config.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutv3.1/error.php" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutv3.1/error.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutv3.1/img/GDB.png" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutv3.1/img/GDB.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutv3.1/img/VIETTELPOST.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutv3.1/img/VIETTELPOST.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutv3.1/img/VNPOST.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutv3.1/img/VNPOST.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutv3.1/img/alipay.png" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutv3.1/img/alipay.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutv3.1/img/wechatpay.png" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutv3.1/img/wechatpay.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutv3.1/include/NL_Checkoutv3.php" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutv3.1/include/NL_Checkoutv3.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutv3.1/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutv3.1/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutv3.1/payment_cancel.php" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutv3.1/payment_cancel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutv3.1/payment_success.php" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutv3.1/payment_success.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/checkoutv3.3/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/checkoutv3.3/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/config/config.example.php" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/config/config.example.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_checkout/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../test_checkout/index.html" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution>
+      <executable />
+    </execution>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../nganluong_web" />
+  </component>
+  <component name="ProjectId" id="1Ozqwico6Xm88UKjU3RQxzbglK5" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../nganluong_web" />
+    <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/asset" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/component" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3683bf84-0c91-41cc-b292-9b34e05144ee" name="Default Changelist" comment="" />
+      <created>1564991012877</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1564991012877</updated>
+      <workItem from="1564991013975" duration="2671000" />
+      <workItem from="1564998664718" duration="2770000" />
+      <workItem from="1565060821610" duration="14036000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
